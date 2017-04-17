@@ -1,0 +1,19 @@
+# Standards: 0.11
+---
+
+# 2.1.5 Ensure time services are not enabled
+
+- name: 2.1.5 - Ensure time services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - time-dgram
+    - time-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - "2.1.5"
+    - scored

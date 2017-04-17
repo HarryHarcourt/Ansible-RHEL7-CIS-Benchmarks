@@ -1,0 +1,15 @@
+# Standards: 0.11
+
+galaxy_info:
+  author: Anth Courtney
+  description: Implement CIS Amazon Linux V2 Benchmark
+  company: JemJuliet Pty Ltd
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+  - name: Amazon
+    versions:
+    - "2016.03"
+    - "2016.09"
+  galaxy_tags: ['CIS','Linux','Amazon','hardening','benchmark','PCIDSS','compliance']
+dependencies: []

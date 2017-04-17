@@ -1,0 +1,25 @@
+# Standards: 0.11
+---
+
+# 6.2.1 Ensure password fields are not empty
+
+- name: 6.2.1 - Identify any accounts without passwords
+  shell: "cat /etc/shadow | awk -F: '($2 == \"\" ) { print $1 }'"
+  register: accounts_6_2_1
+  check_mode: no
+  changed_when: False
+  tags: 
+    - level-1
+    - section-6
+    - "6.2.1"
+    - scored
+
+- name: 6.2.1 - Lock any accounts without passwords
+  command: "passwd -l {{ item }}" 
+  with_items: "{{ accounts_6_2_1.stdout_lines|default([]) }}"
+  when: accounts_6_2_1.stdout_lines is defined
+  tags:
+    - level-1
+    - section-6
+    - "6.2.1"
+    - scored

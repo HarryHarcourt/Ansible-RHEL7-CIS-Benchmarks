@@ -1,0 +1,9 @@
+# Standards: 0.11
+---
+
+- hosts: localhost
+  connection: local
+  become: yes
+
+  roles:
+    - anthcourtney.cis-amazon-linux
