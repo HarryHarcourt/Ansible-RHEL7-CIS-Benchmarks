@@ -10,3 +10,6 @@
   service:
     name: rsyslog
     state: restarted
+
+- name: Flush ipv4 route
+  command: "sysctl -w net.ipv4.route.flush=1"
