@@ -5,27 +5,72 @@
 
 - name: 3.2.3 - Ensure secure ICMP redirects are not accepted
   sysctl:
-    ignoreerrors: yes
-    name: "{{ item }}" 
-    value: 0
+    ignoreerrors: true
+    name: "{{ item.kernel_param }}"
+    value: "{{ item.value }}"
     state: present
   with_items:
-    - "net.ipv4.conf.all.secure_redirects"
-    - "net.ipv4.conf.default.secure_redirects"
+    - "{{ v_3_2_3_ipv4_conf_all_secure_redirects }}"
+    - "{{ v_3_2_3_ipv4_conf_default_secure_redirects }}"
   tags:
     - level-1
     - section-3
     - "3.2.3"
     - scored
 
-- name: 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters
-  command: "{{ item }}"
+- name: 3.2.3 - Get secure ICMP redirects value from active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_3_kernel_param
+  changed_when: false
   with_items:
-    - "sysctl -w net.ipv4.conf.all.secure_redirects=0"
-    - "sysctl -w net.ipv4.conf.default.secure_redirects=0"
-    - "sysctl -w net.ipv4.route.flush=1"
+    - "{{ v_3_2_3_ipv4_conf_all_secure_redirects }}"
   tags:
     - level-1
     - section-3
     - "3.2.3"
     - scored
+
+- name: 3.2.3 - Displaying value for all ICMP secure redirects
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_3_kernel_param.results[0].stdout }}
+
+- name: 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_3_ipv4_conf_all_secure_redirects }}"
+  when: "{{ v_3_2_3_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
+  tags:
+    - level-1
+    - section-3
+    - "3.2.3"
+    - scored
+    
+- name: 3.2.3 - Get secure ICMP redirects value from active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_3_kernel_param
+  changed_when: false
+  with_items:
+    - "{{ v_3_2_3_ipv4_conf_default_secure_redirects }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.3"
+    - scored
+
+- name: 3.2.3 - Displaying value for default ICMP secure redirects
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_3_kernel_param.results[0].stdout }}
+
+- name: 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_3_ipv4_conf_default_secure_redirects }}"
+  when: "{{ v_3_2_3_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
+  tags:
+    - level-1
+    - section-3
+    - "3.2.3"
+    - scored
+    

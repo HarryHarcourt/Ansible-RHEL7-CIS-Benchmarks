@@ -43,7 +43,7 @@ cis_enable_ntp: true # Set to true if ntp should be enabled/configured.
 cis_enable_chrony: false # Set to true if chrony should be enabled/configured.
 
 # 3.1.1
-v_3_1_1_ipv4_ip_forward: { proc_src: '/proc/sys/net/ipv4/ip_forward', kernel_param: 'net.ipv4.ip_forward', value: 1 }
+v_3_1_1_ipv4_ip_forward: { proc_src: '/proc/sys/net/ipv4/ip_forward', kernel_param: 'net.ipv4.ip_forward', value: 0 }
 #v_3_1_1_ipv4_route_flush: { proc_src: '/proc/sys/net/ipv4/route/flush', kernel_param: 'net.ipv4.route.flush', value: 1}
 
 # 3.1.2

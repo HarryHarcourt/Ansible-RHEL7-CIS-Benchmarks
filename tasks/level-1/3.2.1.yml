@@ -5,25 +5,69 @@
 
 - name: 3.2.1 - Ensure source routed packets are not accepted 
   sysctl:
-    ignoreerrors: yes
-    name: "{{ item }}" 
-    value: 0
+    ignoreerrors: true
+    name: "{{ item.kernel_param }}"
+    value: "{{ item.value }}"
     state: present
   with_items:
-    - "net.ipv4.conf.all.accept_source_route"
-    - "net.ipv4.conf.default.accept_source_route"
+    - "{{ v_3_2_1_ipv4_conf_all_accept_source_route }}"
+    - "{{ v_3_2_1_ipv4_conf_default_accept_source_route }}"
   tags:
     - level-1
     - section-3
     - "3.2.1"
     - scored
 
-- name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
-  command: "{{ item }}"
+- name: 3.2.1 - Get source routed packets value from the active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_1_kernel_param
+  changed_when: false
   with_items:
-    - "sysctl -w net.ipv4.conf.all.accept_source_route=0"
-    - "sysctl -w net.ipv4.conf.default.accept_source_route=0"
-    - "sysctl -w net.ipv4.route.flush=1"
+    - "{{ v_3_2_1_ipv4_conf_all_accept_source_route }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.1"
+    - scored
+
+- name: 3.2.1 - Displaying value of all source routed packets kernel parameter
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_1_kernel_param.results[0].stdout }}
+
+- name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_1_ipv4_conf_all_accept_source_route }}"
+  when: "{{ v_3_2_1_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
+  tags:
+    - level-1
+    - section-3
+    - "3.2.1"
+    - scored
+    
+- name: 3.2.1 - Get source routed packets value from the active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_1_kernel_param
+  changed_when: false
+  with_items:
+    - "{{ v_3_2_1_ipv4_conf_default_accept_source_route }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.1"
+    - scored
+
+- name: 3.2.1 - Displaying value of all source routed packets kernel parameter
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_1_kernel_param.results[0].stdout }}
+
+- name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_1_ipv4_conf_default_accept_source_route }}"
+  when: "{{ v_3_2_1_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
   tags:
     - level-1
     - section-3

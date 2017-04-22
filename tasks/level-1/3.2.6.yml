@@ -5,21 +5,40 @@
 
 - name: 3.2.6 - Ensure bogus ICMP responses are ignored
   sysctl:
-    ignoreerrors: yes
-    name: "net.ipv4.icmp_ignore_bogus_error_responses"
-    value: 1
+    ignoreerrors: true
+    name: "{{ item.kernel_param }}"
+    value: "{{ item.value }}"
     state: present
+  with_items:
+    - "{{ v_3_2_6_ipv4_icmp_echo_ignore_bogus_error_responses }}"
   tags:
     - level-1
     - section-3
     - "3.2.6"
     - scored
 
-- name: 3.2.6 - Ensure bogus ICMP responses are ignored by active kernel parameters
-  command: "{{ item }}"
+- name: 3.2.6 - Get bogus ICMP responses value from active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_6_kernel_param
+  changed_when: false
   with_items:
-    - "sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1"
-    - "sysctl -w net.ipv4.route.flush=1"
+    - "{{ v_3_2_6_ipv4_icmp_echo_ignore_bogus_error_responses }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.6"
+    - scored
+
+- name: 3.2.6 - Displaying value for bogus ICMP responses 
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_6_kernel_param.results[0].stdout }}
+
+- name: 3.2.6 - Ensure bogus ICMP responses are ignored by active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_6_ipv4_icmp_echo_ignore_bogus_error_responses }}"
+  when: "{{ v_3_2_6_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
   tags:
     - level-1
     - section-3

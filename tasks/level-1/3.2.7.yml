@@ -5,27 +5,73 @@
 
 - name: 3.2.7 - Ensure Reverse Path Filtering is enabled 
   sysctl:
-    ignoreerrors: yes
-    name: "{{ item }}" 
-    value: 1
+    ignoreerrors: true
+    name: "{{ item.kernel_param }}"
+    value: "{{ item.value }}"
     state: present
   with_items:
-    - "net.ipv4.conf.all.rp_filter"
-    - "net.ipv4.conf.default.rp_filter"
+    - "{{ v_3_2_7_ipv4_conf_all_rp_filter }}"
+    - "{{ v_3_2_7_ipv4_conf_default_rp_filter }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.7"
+    - scored
+    
+- name: 3.2.7 - Get Reverse Path Filtering value from the active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_7_kernel_param
+  changed_when: false
+  with_items:
+    - "{{ v_3_2_7_ipv4_conf_all_rp_filter }}"
   tags:
     - level-1
     - section-3
     - "3.2.7"
     - scored
 
+- name: 3.2.7 - Displaying value for the all Reverse Path Filtering
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_7_kernel_param.results[0].stdout }}
+
 - name: 3.2.7 - Ensure Reverse Path Filtering is enabled by active kernel parameters
-  command: "{{ item }}"
-  with_items:
-    - "sysctl -w net.ipv4.conf.all.rp_filter=1"
-    - "sysctl -w net.ipv4.conf.default.rp_filter=1"
-    - "sysctl -w net.ipv4.route.flush=1"
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_7_ipv4_conf_all_rp_filter }}"
+  when: "{{ v_3_2_7_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
   tags:
     - level-1
     - section-3
     - "3.2.7"
     - scored
+    
+- name: 3.2.7 - Get Reverse Path Filtering value from the active kernel parameters
+  command: "cat {{ item.proc_src }}"
+  register: v_3_2_7_kernel_param
+  changed_when: false
+  with_items:
+    - "{{ v_3_2_7_ipv4_conf_default_rp_filter }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.7"
+    - scored
+
+- name: 3.2.7 - Displaying value for the default Reverse Path Filtering
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_2_7_kernel_param.results[0].stdout }}
+
+- name: 3.2.7 - Ensure Reverse Path Filtering is enabled by active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_2_7_ipv4_conf_default_rp_filter }}"
+  when: "{{ v_3_2_7_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
+  tags:
+    - level-1
+    - section-3
+    - "3.2.7"
+    - scored
+ 
+ 

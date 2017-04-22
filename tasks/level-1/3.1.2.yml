@@ -6,24 +6,68 @@
 - name: 3.1.2 - Ensure packet redirect sending is disabled
   sysctl:
     ignoreerrors: true
-    name: "{{ item }}" 
-    value: 0
+    name: "{{ item.kernel_param }}" 
+    value: "{{ item.value }}"
     state: present
   with_items:
-    - "net.ipv4.conf.all.send_redirects"
-    - "net.ipv4.conf.default.send_redirects"
+    - "{{ v_3_1_2_ipv4_conf_all_send_redirects }}"
+    - "{{ v_3_1_2_ipv4_conf_default_send_redirects }}"
   tags:
     - level-1
     - section-3
     - "3.1.2"
     - scored
 
-- name: 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters
-  command: "{{ item }}"
+- name: 3.1.2 - Get packet redirect settings from active kernel
+  command: "cat {{ item.proc_src }}"
+  register: v_3_1_2_kernel_param
+  changed_when: false  
   with_items:
-    - "sysctl -w net.ipv4.conf.all.send_redirects=0"
-    - "sysctl -w net.ipv4.conf.default.send_redirects=0"
-    - "sysctl -w net.ipv4.route.flush=1"
+    - "{{ v_3_1_2_ipv4_conf_all_send_redirects }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.1.2"
+    - scored
+    
+- name: 3.1.2 - Displaying value for all send_redirects
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_1_2_kernel_param.results[0].stdout }}
+
+- name: 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_1_2_ipv4_conf_all_send_redirects }}"
+  when: "{{ v_3_1_2_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
+  tags:
+    - level-1
+    - section-3
+    - "3.1.2"
+    - scored
+
+- name: 3.1.2 - Get packet redirect settings from active kernel
+  command: "cat {{ item.proc_src }}"
+  register: v_3_1_2_kernel_param
+  changed_when: false  
+  with_items:
+    - "{{ v_3_1_2_ipv4_conf_default_send_redirects }}"
+  tags:
+    - level-1
+    - section-3
+    - "3.1.2"
+    - scored
+    
+- name: 3.1.2 - Displaying value for default send_redirects
+  debug: 
+    msg: The value for kernel_param_value is {{ v_3_1_2_kernel_param.results[0].stdout }}
+
+- name: 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters
+  command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
+  with_items: 
+    - "{{ v_3_1_2_ipv4_conf_default_send_redirects }}"
+  when: "{{ v_3_1_2_kernel_param.results[0].stdout }} != {{ item.value }}"
+  notify: Flush ipv4 route
   tags:
     - level-1
     - section-3
