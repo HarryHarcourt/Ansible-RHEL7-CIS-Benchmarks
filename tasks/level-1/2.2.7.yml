@@ -6,7 +6,7 @@
 - name: 2.2.7 - Ensure NFS and RPC are not enabled
   service:
     name: "{{ item }}"
-    enabled: false
+    enabled: no
     state: stopped
   with_items:
     - nfs
