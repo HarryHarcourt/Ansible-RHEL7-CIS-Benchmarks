@@ -3,6 +3,17 @@
 
 # 2.1.1 Ensure chargen services are not enabled
 
+# Chargen is usually installed with xinetd
+
+- name: 2.1.1 - Check to see if xinetd is installed
+  yum:
+    list: xinetd
+  register: is_installed
+
+- name: 2.1.1 - Display installation status of xinetd
+  debug:
+    msg: Installation Status is {{ is_installed.results[-1].yumstate }}
+
 - name: 2.1.1 - Ensure chargen services are not enabled
   service:
     name: "{{ item }}"
@@ -11,7 +22,8 @@
   with_items:
     - chargen-dgram
     - chargen-stream
-  ignore_errors: true
+  when:  cis_xinetd_state != 'absent' 
+#  ignore_errors: true
   tags:
     - level-1
     - section-2

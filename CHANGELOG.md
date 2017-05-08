@@ -29,3 +29,7 @@ Bugfixes:
 1.0.0 (2016-10-11)
 
 * Initial release.
+
+1.0.1 (2017-05-07)
+
+* Updated many of the tasks from 3.1.1 -> 3.3.2 and made them idempotent, thus they set the value in sysctl, then check the /proc values before setting the value in the kernel

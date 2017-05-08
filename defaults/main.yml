@@ -38,6 +38,9 @@ cis_local_login_warning_banner: "Authorized uses only. All activity may be monit
 # 1.7.1.3
 cis_remote_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"
 
+# 2.1.11
+cis_xinetd_state: absent # Set state to absent if not needed, enables conditional pass for basic services e.g. chargen
+
 # 2.2.1.1
 # You should only enable either ntp or chrony, but not both.
 cis_enable_ntp: true # Set to true if ntp should be enabled/configured.
