@@ -29,3 +29,14 @@
     - "2.1.7"
     - scored
 
+- name: 2.1.7 - Install talk client if required - {{ cis_talkd_install.client_state }}
+  yum:
+    name: "{{ item.client }}"
+    state: "{{ item.client_state }}"
+  with_items:
+    - "{{ cis_talkd_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.7"
+    - scored

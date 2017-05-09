@@ -3,12 +3,38 @@
 
 # 2.1.8 Ensure telnet server is not enabled
 
-- name: 2.1.8 - Ensure telnet server is not enabled
-  service:
-    name: "telnet"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+- name: 2.1.8 - Ensure telnet server is {{ cis_telnet_install.state }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_telnet_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.8"
+    - scored
+
+- name: 2.1.8 - If telnet server is installed set appropriate service - {{ cis_telnet_install.exception }}
+  service: 
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  when: cis_telnet_install.state == 'present'
+  with_items:
+    - "{{ cis_telnet_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.8"
+    - scored
+
+- name: 2.1.8 - Install telnet client if required - {{ cis_telnet_install.client_state }}
+  yum:
+    name: "{{ item.client }}"
+    state: "{{ item.client_state }}"
+  with_items:
+    - "{{ cis_telnet_install }}"
   tags:
     - level-1
     - section-2

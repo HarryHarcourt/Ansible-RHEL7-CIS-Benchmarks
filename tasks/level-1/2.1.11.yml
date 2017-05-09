@@ -1,15 +1,31 @@
 # Standards: 0.11
 ---
 
-# 2.1.11 Ensure xinetd server is not installed
+# 2.1.11 Ensure xinetd server is not enabled
 
-- name: 2.1.11 - Ensure xinetd server is not installed
+- name: 2.1.11 - Ensure xinetd server is {{ cis_xinetd_install.state }}
   yum:
-    name: "xinetd"
-    state: "{{ cis_xinetd_state }}"
-#  ignore_errors: true
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_xinetd_install }}"
   tags:
     - level-1
     - section-2
     - "2.1.11"
     - scored
+
+- name: 2.1.11 - If xinetd server is installed set appropriate service - {{ cis_xinetd_install.exception }}
+  service: 
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  when: cis_xinetd_install.state == 'present'
+  with_items:
+    - "{{ cis_xinetd_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.11"
+    - scored
+

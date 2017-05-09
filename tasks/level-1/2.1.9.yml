@@ -3,12 +3,38 @@
 
 # 2.1.9 Ensure tftp server is not enabled
 
-- name: 2.1.9 - Ensure tftp server is not enabled
-  service:
-    name: "tftp"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+- name: 2.1.9 - Ensure tftp server is {{ cis_tftp_install.state }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_tftp_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.9"
+    - scored
+
+- name: 2.1.9 - If tftp server is installed set appropriate service - {{ cis_tftp_install.exception }}
+  service: 
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  when: cis_tftp_install.state == 'present'
+  with_items:
+    - "{{ cis_tftp_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.9"
+    - scored
+
+- name: 2.1.9 - Install tftp client if required - {{ cis_tftp_install.client_state }}
+  yum:
+    name: "{{ item.client }}"
+    state: "{{ item.client_state }}"
+  with_items:
+    - "{{ cis_tftp_install }}"
   tags:
     - level-1
     - section-2

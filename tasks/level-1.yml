@@ -79,6 +79,9 @@
   when: "'1.7.1.6' not in cis_level_1_exclusions"
 - include: "level-1/1.8.yml"
   when: "'1.8' not in cis_level_1_exclusions"
+# Running 2.1.11 first as decides if xinetd is installed or not prior to standard services chargen etc.
+- include: "level-1/2.1.11.yml" 
+  when: "'2.1.11' not in cis_level_1_exclusions"
 - include: "level-1/2.1.1.yml"
   when: "'2.1.1' not in cis_level_1_exclusions"
 - include: "level-1/2.1.2.yml"
@@ -99,8 +102,6 @@
   when: "'2.1.9' not in cis_level_1_exclusions"
 - include: "level-1/2.1.10.yml"
   when: "'2.1.10' not in cis_level_1_exclusions"
-- include: "level-1/2.1.11.yml"
-  when: "'2.1.11' not in cis_level_1_exclusions"
 - include: "level-1/2.2.1.1.yml"
   when: "'2.2.1.1' not in cis_level_1_exclusions"
 - include: "level-1/2.2.1.2.yml"

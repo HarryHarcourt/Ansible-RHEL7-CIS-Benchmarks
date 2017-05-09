@@ -59,12 +59,17 @@ cis_rservice_rexec: { service: rexec.socket, enabled: no, state: stopped, rexec_
 cis_rservice_rlogin: { service: rlogin.socket, enabled: no, state: stopped, rlogin_exeception: }
 cis_rservice_rsh: { service: rsh.socket, enabled: no, state: stopped, rlogin_exeception: }
 # 2.1.7
-cis_talkd_install: { package: talk-server, state: present, exception: 123, service: talk, enabled: yes, rstate: started }
+cis_talkd_install: { package: talk-server, state: absent, exception: 123, service: talk.socket, enabled: yes, rstate: started, client: talk, client_state: absent }
+# 2.1.8
+cis_telnet_install: { package: telnet-server, state: present, exception: 123, service: telnet.socket, enabled: yes, rstate: started, client: telnet, client_state: present }
+# 2.1.9
+cis_tftp_install: { package: tftp-server, state: present, exception: 123, service: tftp.socket, enabled: yes, rstate: started, client: tftp, client_state: present }
+# 2.1.10
+cis_rsync_install: { package: rsync, state: present, exception: 123, service: rsyncd, enabled: yes, rstate: started }
 
-
-# 2.1.11
-cis_xinetd_exception: 
-cis_xinetd_state: absent # Set state to absent if not needed, enables conditional pass for basic services e.g. chargen
+# 2.1.11  # NOTE NEED TO SET XINETD STATE IN TWO PLACES BELOW
+cis_xinetd_install: { package: xinetd, state: present, exception: 123, service: xinetd, enabled: yes, rstate: started }
+cis_xinetd_state: present # Set state to absent if not needed, enables conditional pass for basic services e.g. chargen
 
 # 2.2.1.1
 # You should only enable either ntp or chrony, but not both.
