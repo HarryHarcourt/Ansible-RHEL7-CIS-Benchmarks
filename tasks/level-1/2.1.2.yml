@@ -7,11 +7,11 @@
   service:
     name: "{{ item }}"
     enabled: false
-    state: stopped
+    state: "{{ cis_daytime_state }}"
   with_items:
     - daytime-dgram
     - daytime-stream
-  ignore_errors: true
+  when:  cis_xinetd_state != 'absent'
   tags:
     - level-1
     - section-2

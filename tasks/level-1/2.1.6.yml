@@ -1,20 +1,49 @@
 # Standards: 0.11
 ---
 
-# 2.1.6 Ensure rsh server is not enabled
+# 2.1.6 Check rsh-server installation should be absent, else show exception {{ cis_rservices_install.rshserver_exception }}
 
-- name: 2.1.6 - Ensure rsh server is not enabled
-  service:
-    name: "{{ item }}"
-    enabled: false
-    state: stopped
+- name: 2.1.6 - Ensure rsh server is {{ cis_rservices_install.state }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
   with_items:
-    - rexec
-    - rlogin
-    - rsh
-  ignore_errors: true
+    - "{{ cis_rservices_install }}"
   tags:
     - level-1
     - section-2
     - "2.1.6"
     - scored
+
+- name: 2.1.6 - If rsh server is installed start appropriate services
+  service: 
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.state }}"
+  when: cis_rservices_install.state == 'present'
+  with_items:
+    - "{{ cis_rservice_rexec }}"
+    - "{{ cis_rservice_rlogin }}"
+    - "{{ cis_rservice_rsh }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.6"
+    - scored
+
+
+#- name: 2.1.6 - Ensure rsh server is not enabled
+#  service:
+#    name: "{{ item }}"
+#    enabled: false
+#    state: stopped
+#  with_items:
+#    - rexec
+#    - rlogin
+#    - rsh
+#  ignore_errors: true
+#  tags:
+#    - level-1
+#    - section-2
+#    - "2.1.6"
+#    - scored

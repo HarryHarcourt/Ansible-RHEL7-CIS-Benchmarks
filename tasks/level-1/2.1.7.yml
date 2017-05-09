@@ -3,14 +3,29 @@
 
 # 2.1.7 Ensure talk server is not enabled
 
-- name: 2.1.7 - Ensure talk server is not enabled
-  service:
-    name: "talk"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+- name: 2.1.7 - Ensure talkd server is {{ cis_talkd_install.state }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_talkd_install }}"
   tags:
     - level-1
     - section-2
     - "2.1.7"
     - scored
+
+- name: 2.1.7 - If talkd server is installed set appropriate service - {{ cis_talkd_install.exception }}
+  service: 
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  when: cis_talkd_install.state == 'present'
+  with_items:
+    - "{{ cis_talkd_install }}"
+  tags:
+    - level-1
+    - section-2
+    - "2.1.7"
+    - scored
+
