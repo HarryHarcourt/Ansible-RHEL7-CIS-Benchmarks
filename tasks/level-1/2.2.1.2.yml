@@ -3,4 +3,13 @@
 
 # 2.2.1.2 Ensure ntp is configured
 
-# TODO
+- name: Install NTP configuration
+  template: src=templates/ntp.conf.j2
+        dest=/etc/ntp.conf
+        mode=644 owner=root group=root backup=true
+  notify: Restart ntp
+  tags:
+    - level-1
+    - section-4
+    - "2.2.1.2"
+    - not-scored

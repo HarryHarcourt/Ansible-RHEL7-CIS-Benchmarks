@@ -13,3 +13,8 @@
 
 - name: Flush ipv4 route
   command: "sysctl -w net.ipv4.route.flush=1"
+
+- name: Restart ntp
+  service:
+    name: ntp
+    state: restarted

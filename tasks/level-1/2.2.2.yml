@@ -5,8 +5,10 @@
 
 - name: 2.2.2 - Ensure X Window System is not installed
   yum:
-    name: "xorg-x11*"
-    state: absent
+    name: "{{ item.package }}"
+    state: "{{ item.state }}" 
+  with_items:
+    - cis_xwindows_install
   tags:
     - level-1
     - "2.2.2"

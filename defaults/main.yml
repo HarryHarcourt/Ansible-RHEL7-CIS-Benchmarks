@@ -68,13 +68,36 @@ cis_tftp_install: { package: tftp-server, state: present, exception: 123, servic
 cis_rsync_install: { package: rsync, state: present, exception: 123, service: rsyncd, enabled: yes, rstate: started }
 
 # 2.1.11  # NOTE NEED TO SET XINETD STATE IN TWO PLACES BELOW
-cis_xinetd_install: { package: xinetd, state: present, exception: 123, service: xinetd, enabled: yes, rstate: started }
-cis_xinetd_state: present # Set state to absent if not needed, enables conditional pass for basic services e.g. chargen
+cis_xinetd_install: { package: xinetd, state: absent, exception: 123, service: xinetd, enabled: yes, rstate: started }
+cis_xinetd_state: absent # Set state to absent if not needed, enables conditional pass for basic services e.g. chargen
 
 # 2.2.1.1
 # You should only enable either ntp or chrony, but not both.
 cis_enable_ntp: true # Set to true if ntp should be enabled/configured.
 cis_enable_chrony: false # Set to true if chrony should be enabled/configured.
+
+# 2.2.1.2
+# Enter the variables for configuring NTP
+# NTP
+ntp_clients: |+
+ server 0.pool.ntp.org
+ server 1.pool.ntp.org
+ server 2.pool.ntp.org
+ server 3.pool.ntp.org
+
+ntp_servers: |+
+ server asia.pool.ntp.org
+ restrict asia.pool.ntp.org mask 255.255.255.255 nomodify notrap noquery
+ peer ntp1.company.com
+ restrict ntp1-1.company.com mask 255.255.255.255 nomodify notrap 
+ peer ntp2.xpo.com
+ restrict ntp1-2.company.com mask 255.255.255.255 nomodify notrap 
+ peer ntp3.xpo.com
+ restrict ntp1-3.company.com mask 255.255.255.255 nomodify notrap 
+
+# 2.2.2
+# Installation of X-Windows 
+cis_xwindows_install: { package: "xorg-x11*", state: absent, exception: 123 }
 
 # 3.1.1
 v_3_1_1_ipv4_ip_forward: { proc_src: '/proc/sys/net/ipv4/ip_forward', kernel_param: 'net.ipv4.ip_forward', value: 0 }
