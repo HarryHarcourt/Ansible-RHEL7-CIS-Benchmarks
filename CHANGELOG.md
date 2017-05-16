@@ -35,4 +35,5 @@ Bugfixes:
 * Updated many of the tasks from 3.1.1 -> 3.3.2 and made them idempotent, thus they set the value in sysctl, then check the /proc values before setting the value in the kernel
 * Updated many of the tasks from 2.1.1 -> 2.1.11 to make them idempotent, they will also take lead from the defaults where instead of disabling the services we remove their binaries
 * Moved 2.1.11 to run before 2.1.1 because without the xinetd package installed you cannot configure the other bases services
-* Updated NTP, working on xorg-X11 but having trouble, variable argument, will correct tomorrow
+* Updated NTP, and xorg-X11
+* Updated multiple sections, Avahi, DHCP, OpenLDAP, CUPS, so the services can be installed and enabled if required
