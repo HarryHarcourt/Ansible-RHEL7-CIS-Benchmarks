@@ -97,7 +97,23 @@ ntp_servers: |+
 
 # 2.2.2
 # Installation of X-Windows 
-cis_xwindows_install: { package: "xorg-x11*", state: absent, exception: 123 }
+cis_xwindows_install: { package: "xorg-x11*", state: present, exception: 123 }
+
+# 2.2.3
+# Installation of Avahi Daemon
+cis_avahi_install: { package: "avahi", state: present, service: avahi-daemon, rstate: started, enabled: false, exception: 123 }
+
+# 2.2.4
+# Installation of CUPS  
+cis_cups_install: { package: "cups", state: present, service: cups, rstate: started, enabled: false, exception: 123 }
+
+# 2.2.5
+# Installation of DHCP Service
+cis_dhcpd_install: { package: "dhcp", state: present, service: dhcpd, rstate: stopped, enabled: false, exception: 123 }
+
+# 2.2.6
+# Installation of LDAP Server
+cis_slapd_install: { package: "openldap-servers", state: present, service: slapd, rstate: started, enabled: false, exception: 123 }
 
 # 3.1.1
 v_3_1_1_ipv4_ip_forward: { proc_src: '/proc/sys/net/ipv4/ip_forward', kernel_param: 'net.ipv4.ip_forward', value: 0 }

@@ -3,12 +3,25 @@
 
 # 2.2.6 Ensure LDAP server is not enabled
 
-- name: 2.2.6 - Ensure LDAP server is not enabled
+- name: 2.2.6 - Ensure LDAP server is {{ cis_slapd_install.state }}, exception {{ cis_slapd_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_slapd_install }}"
+  tags:
+    - level-1
+    - "2.2.6"
+    - scored
+
+- name: 2.2.6 - Ensure LDAP server is {{ cis_slapd_install.state }}, exception {{ cis_slapd_install.exception }}
   service:
-    name: "slapd"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_slapd_install }}"
+  when: cis_slapd_install.state == "present"
   tags:
     - level-1
     - "2.2.6"

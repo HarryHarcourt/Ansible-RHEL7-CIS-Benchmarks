@@ -3,12 +3,24 @@
 
 # 2.2.5 Ensure DHCP Server is not enabled
 
-- name: 2.2.5 - Ensure DHCP Server is not enabled
+- name: 2.2.5 - Ensure DHCP Server is {{ cis_dhcpd_install.state }}, exception {{ cis_dhcpd_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_dhcpd_install }}"
+  tags:
+    - level-1
+    - "2.2.5"
+    - scored
+
+- name: 2.2.5 - Ensure DHCP Server is {{ cis_dhcpd_install.state }}, exception {{ cis_dhcpd_install.exception }}
   service:
-    name: "dhcpd"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_dhcpd_install }}"
   tags:
     - level-1
     - "2.2.5"

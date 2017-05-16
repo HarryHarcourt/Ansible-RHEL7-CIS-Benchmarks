@@ -3,12 +3,25 @@
 
 # 2.2.4 Ensure CUPS is not enabled
 
-- name: 2.2.4 - Ensure CUPS is not enabled
+- name: 2.2.4 - Ensure CUPS is {{ cis_cups_install.state }}, exception {{ cis_cups_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_cups_install }}"
+  tags:
+    - level-1
+    - "2.2.4"
+    - scored
+
+- name: 2.2.4 - Ensure CUPS is {{ cis_cups_install.state }}, exception {{ cis_cups_install.exception }} 
   service:
-    name: "cups"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_cups_install }}"
+  when: cis_cups_install.state == "present"
   tags:
     - level-1
     - "2.2.4"
