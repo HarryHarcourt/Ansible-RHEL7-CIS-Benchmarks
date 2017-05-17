@@ -1,14 +1,27 @@
 # Standards: 0.11
 ---
 
-# 2.2.9 Ensure FTP Server is not enabled
+# 2.2.9 Ensure FTP services is not enabled
 
-- name: 2.2.9 - Ensure FTP Server is not enabled
+- name: 2.2.9 - Ensure FTP services are correct {{ cis_vsftpd_install.state }}, exception {{ cis_vsftpd_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_vsftpd_install }}"
+  tags:
+    - level-1
+    - "2.2.9"
+    - scored
+
+- name: 2.2.9 - Ensure FTP Service is correct {{ cis_vsftpd_install.rstate }}, exception {{ cis_vsftpd_install.exception }}
   service:
-    name: "vsftpd"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_vsftpd_install }}"
+  when: cis_vsftpd_install.state == "present"
   tags:
     - level-1
     - "2.2.9"

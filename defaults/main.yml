@@ -100,7 +100,7 @@ ntp_servers: |+
 cis_xwindows_install: { package: "xorg-x11*", state: present, exception: 123 }
 
 # 2.2.3
-# Installation of Avahi Daemon
+# Installation of Avahi Daemon NOTE: Avahi service will not start without further configuration
 cis_avahi_install: { package: "avahi", state: present, service: avahi-daemon, rstate: started, enabled: false, exception: 123 }
 
 # 2.2.4
@@ -114,6 +114,32 @@ cis_dhcpd_install: { package: "dhcp", state: present, service: dhcpd, rstate: st
 # 2.2.6
 # Installation of LDAP Server
 cis_slapd_install: { package: "openldap-servers", state: present, service: slapd, rstate: started, enabled: false, exception: 123 }
+
+# 2.2.7
+# Installation of NFS and RPC Services, NOTE: RPC Bind Service will only be started if NFS is present
+cis_nfs_install: { package: nfs-utils, state: present, service: nfs-server, rstate: started, enabled: true, exception: 123 }
+cis_rpcbind_install: { package: rpcbind, state: present, service: rpcbind, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.8
+# Installation of DNS Bind, named service, NOTE: there are other Bind Services available if want to subsitute
+cis_named_install: { package: bind-chroot, state: present, service: named, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.9
+# Installation of FTP Server, vsftpd
+cis_vsftpd_install: { package: vsftpd, state: present, service: vsftpd, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.10
+# Installation of various HTTP Servers NOTE: Select one of the below
+cis_httpd_install: { package: httpd, state: present, service: httpd, rstate: started, enabled: true, exception: 123 }
+cis_apache_install: { package: apache, state: absent, service: apache, rstate: started, enabled: true, exception: 123 }
+cis_apache2_install: { package: apache2, state: absent, service: apache2, rstate: started, enabled: true, exception: 123 }
+cis_nginx_install: { package: nginx, state: absent, service: nginx, rstate: started, enabled: true, exception: 123 }
+cis_lighttpd_install: { package: lighttpd, state: absent, service: lighttpd, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.11
+# Installation of POP3 and IMAP Services
+cis_dovecot_install: { package: dovecot, state: present, service: dovecot, rstate: started, enabled: true, exception: 123 }
+cis_cyrus_imapd_install: { package: cyrus-imapd, state: present, service: cyrus-imapd, rstate: started, enabled: true, exception: 123 }
 
 # 3.1.1
 v_3_1_1_ipv4_ip_forward: { proc_src: '/proc/sys/net/ipv4/ip_forward', kernel_param: 'net.ipv4.ip_forward', value: 0 }

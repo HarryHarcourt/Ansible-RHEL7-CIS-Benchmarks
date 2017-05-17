@@ -1,17 +1,29 @@
 # Standards: 0.11
 ---
 
-# 2.2.11 Ensure IMAP and POP3 server is not enabled
+# 2.2.11 Ensure POP3 and IMAP services is not enabled
 
-- name: 2.2.11 - Ensure IMAP and POP3 server is not enabled
-  service:
-    name: "{{ item }}"
-    enabled: false
-    state: stopped
+- name: 2.2.11 - Ensure POP3 and IMAP services are correct, dovecot and cyrus-imapd
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
   with_items:
-    - dovecot
-    - cyrus-imapd
-  ignore_errors: true
+    - "{{ cis_dovecot_install }}"
+    - "{{ cis_cyrus_imapd_install }}"
+  tags:
+    - level-1
+    - "2.2.11"
+    - scored
+
+- name: 2.2.11 - Ensure POP3 and IMAP Service is correct, dovecot and cyrus-impad 
+  service:
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_dovecot_install }}"
+    - "{{ cis_cyrus_imapd_install }}"
+  when: item.state == "present"
   tags:
     - level-1
     - "2.2.11"

@@ -1,14 +1,27 @@
 # Standards: 0.11
 ---
 
-# 2.2.8 Ensure DNS Server is not enabled
+# 2.2.8 Ensure NFS and RPC Bind services is not enabled
 
-- name: 2.2.8 - Ensure DNS Server is not enabled
+- name: 2.2.8 - Ensure DNS Bind/Named services are correct {{ cis_named_install.state }}, exception {{ cis_named_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_named_install }}"
+  tags:
+    - level-1
+    - "2.2.8"
+    - scored
+
+- name: 2.2.6 - Ensure DNS Bind/Named Service is correct {{ cis_named_install.rstate }}, exception {{ cis_named_install.exception }}
   service:
-    name: "named"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_named_install }}"
+  when: cis_named_install.state == "present"
   tags:
     - level-1
     - "2.2.8"

@@ -37,3 +37,4 @@ Bugfixes:
 * Moved 2.1.11 to run before 2.1.1 because without the xinetd package installed you cannot configure the other bases services
 * Updated NTP, and xorg-X11
 * Updated multiple sections, Avahi, DHCP, OpenLDAP, CUPS, so the services can be installed and enabled if required
+* Updated further sections, HTTP Servers, BIND, FTP, NFS and RPC

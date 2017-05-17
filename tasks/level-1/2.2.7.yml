@@ -1,17 +1,29 @@
 # Standards: 0.11
 ---
 
-# 2.2.7 Ensure NFS and RPC are not enabled
+# 2.2.7 Ensure NFS and RPC Bind services is not enabled
 
-- name: 2.2.7 - Ensure NFS and RPC are not enabled
-  service:
-    name: "{{ item }}"
-    enabled: no
-    state: stopped
+- name: 2.2.7 - Ensure NFS/RPC Bind services are correct, NFS is {{ cis_nfs_install.state }}, exception {{ cis_nfs_install.exception }}, RPC Bind is {{ cis_rpcbind_install.state }}, exception {{ cis_rpcbind_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
   with_items:
-    - nfs
-    - rpcbind
-  ignore_errors: true
+    - "{{ cis_nfs_install }}"
+    - "{{ cis_rpcbind_install }}"
+  tags:
+    - level-1
+    - "2.2.7"
+    - scored
+
+- name: 2.2.7 - Ensure NFS/RPC Bind services are correct, NFS is {{ cis_nfs_install.rstate }}, exception {{ cis_nfs_install.exception }}, RPC Bind is {{ cis_rpcbind_install.rstate }}, exception {{ cis_rpcbind_install.exception }}
+  service:
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_nfs_install }}"
+    - "{{ cis_rpcbind_install }}"
+  when: cis_nfs_install.state == "present"
   tags:
     - level-1
     - "2.2.7"
