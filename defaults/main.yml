@@ -41,29 +41,38 @@ cis_remote_login_warning_banner: "Authorized uses only. All activity may be moni
 # 2.1.1
 cis_chargen_exception: 
 cis_chargen_state: stopped
+
 # 2.1.2
 cis_chargen_exception: 
 cis_daytime_state: stopped
+
 # 2.1.3
 cis_discard_exception:
 cis_discard_state: stopped
+
 # 2.1.4
 cis_echo_exception:
 cis_echo_state: stopped
+
 # 2.1.5
 cis_time_exception:
 cis_time_state: stopped
+
 # 2.1.6
 cis_rservices_install: { package: rsh-server, state: absent, rshserver_exception: }
 cis_rservice_rexec: { service: rexec.socket, enabled: no, state: stopped, rexec_exception: }
 cis_rservice_rlogin: { service: rlogin.socket, enabled: no, state: stopped, rlogin_exeception: }
 cis_rservice_rsh: { service: rsh.socket, enabled: no, state: stopped, rlogin_exeception: }
+
 # 2.1.7
 cis_talkd_install: { package: talk-server, state: absent, exception: 123, service: talk.socket, enabled: yes, rstate: started, client: talk, client_state: absent }
+
 # 2.1.8
 cis_telnet_install: { package: telnet-server, state: present, exception: 123, service: telnet.socket, enabled: yes, rstate: started, client: telnet, client_state: present }
+
 # 2.1.9
 cis_tftp_install: { package: tftp-server, state: present, exception: 123, service: tftp.socket, enabled: yes, rstate: started, client: tftp, client_state: present }
+
 # 2.1.10
 cis_rsync_install: { package: rsync, state: present, exception: 123, service: rsyncd, enabled: yes, rstate: started }
 
@@ -140,6 +149,37 @@ cis_lighttpd_install: { package: lighttpd, state: absent, service: lighttpd, rst
 # Installation of POP3 and IMAP Services
 cis_dovecot_install: { package: dovecot, state: present, service: dovecot, rstate: started, enabled: true, exception: 123 }
 cis_cyrus_imapd_install: { package: cyrus-imapd, state: present, service: cyrus-imapd, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.12
+# Installation of SMB, SAMBA Services
+cis_smb_install: { package: samba, state: present, service: smb, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.13
+# Installation of Squid Services
+cis_squid_install: { package: squid, state: present, service: squid, rstate: started, enabled: true, exception: 123 }
+
+# 2.2.14
+# Installation of SNMP Service
+cis_snmp_install: { package: net-snmp, state: present, service: snmpd, rstate: started, enabled: true, exception: 123 }
+# SNMP Configuration
+snmp_community: cis_test
+snmp_syscontact: admin@domain.com
+snmp_syslocation: XXXXXXX Datacenter
+
+snmp_servers:
+  - { server: snmp01.domain.com, community: "{{ snmp_community }}" }
+  - { server: snmp02.domain.com, community: "{{ snmp_community }}" }
+  - { server: snmp03.domain.com, community: "{{ snmp_community }}" }
+  - { server: snmp04.domain.com, community: "{{ snmp_community }}" }
+  - { server: localhost.localdomain, community: "{{ snmp_community }}" }
+
+snmp_trapsink:
+  - { server: trapsink01.domain.com, community: "{{ snmp_community }}" }
+  - { server: trapsink02.domain.com, community: "{{ snmp_community }}" }
+
+# 2.2.16
+# Installation of NIS Service
+cis_nis_install: { package: ypserv, state: present, service: ypserv, rstate: started, enabled: true, exception: 123 }
 
 # 3.1.1
 v_3_1_1_ipv4_ip_forward: { proc_src: '/proc/sys/net/ipv4/ip_forward', kernel_param: 'net.ipv4.ip_forward', value: 0 }

@@ -38,3 +38,4 @@ Bugfixes:
 * Updated NTP, and xorg-X11
 * Updated multiple sections, Avahi, DHCP, OpenLDAP, CUPS, so the services can be installed and enabled if required
 * Updated further sections, HTTP Servers, BIND, FTP, NFS and RPC
+* Finished off the section 2.2.* stuff ran through and still so odd things so will validate over next couple of days

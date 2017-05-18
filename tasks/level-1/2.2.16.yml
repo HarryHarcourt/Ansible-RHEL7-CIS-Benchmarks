@@ -1,14 +1,27 @@
 # Standards: 0.11
 ---
 
-# 2.2.16 Ensure NIS Server is not enabled
+# 2.2.16 Ensure NIS services is not enabled
 
-- name: 2.2.16 - Ensure NIS Server is not enabled
+- name: 2.2.16 - Ensure NIS services is {{ cis_nis_install.state }} exception {{ cis_nis_install.exception }}
+  yum:
+    name: "{{ item.package }}"
+    state: "{{ item.state }}"
+  with_items:
+    - "{{ cis_nis_install }}"
+  tags:
+    - level-1
+    - "2.2.16"
+    - scored
+
+- name: 2.2.16 - Ensure NIS Service is correct 
   service:
-    name: "ypserv"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+    name: "{{ item.service }}"
+    enabled: "{{ item.enabled }}"
+    state: "{{ item.rstate }}"
+  with_items:
+    - "{{ cis_nis_install }}"
+  when: item.state == "present"
   tags:
     - level-1
     - "2.2.16"
