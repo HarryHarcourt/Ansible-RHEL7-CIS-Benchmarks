@@ -39,3 +39,4 @@ Bugfixes:
 * Updated multiple sections, Avahi, DHCP, OpenLDAP, CUPS, so the services can be installed and enabled if required
 * Updated further sections, HTTP Servers, BIND, FTP, NFS and RPC
 * Finished off the section 2.2.* stuff ran through and still so odd things so will validate over next couple of days
+* Found error on the 3.1.1 -> 3.3.2 section, updated to include |bool at end of each when condition, enabled RedHat, 7.3 first

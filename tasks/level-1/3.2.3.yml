@@ -38,7 +38,7 @@
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
   with_items: 
     - "{{ v_3_2_3_ipv4_conf_all_secure_redirects }}"
-  when: "{{ v_3_2_3_kernel_param.results[0].stdout }} != {{ item.value }}"
+  when: v_3_2_3_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
   tags:
     - level-1
@@ -66,7 +66,7 @@
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
   with_items: 
     - "{{ v_3_2_3_ipv4_conf_default_secure_redirects }}"
-  when: "{{ v_3_2_3_kernel_param.results[0].stdout }} != {{ item.value }}"
+  when: v_3_2_3_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
   tags:
     - level-1

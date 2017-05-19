@@ -37,7 +37,7 @@
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
   with_items: 
     - "{{ v_3_2_8_ipv4_tcp_syncookies }}"
-  when: "{{ v_3_2_8_kernel_param.results[0].stdout }} != {{ item.value }}"
+  when: v_3_2_8_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
   tags:
     - level-1
