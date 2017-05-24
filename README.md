@@ -1,21 +1,23 @@
 anthcourtney.cis-amazon-linux
+HarryHarcourt.Ansible-RHEL7-CIS-Benchmarks
 =========
 
-THIS IS NOT FINISH - IT IS STILL BE MODIFIED TO MOVE FROM AMAZON LINUX TO RHEL.
+All Credit goes to anthcourtney for the original framework found here: https://github.com/anthcourtney/ansible-role-cis-amazon-linux
 
-All Credit goes to anthcourtney
-I am simply cleaning up and making idempotent
+This implementation has been converted to Red Hat Enterprise Linux 7.X, whilst the roles applies to v2.0.0 of the CIS Amazon Linux Benchmarks, Amazon Linux is based on Red Hat and as such those benchmarks have been applied.
+This implementation has been made idempotent in many places.
+This implementation allows the enabling of and configuration of some services.
+The CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
+The CIS RHEL Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Red_Hat_Enterprise_Linux_7_Benchmark_v2.1.1.pdf>
 
-This ansible role applies v2.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
-
-This role was developed and tested against Amazon Linux 2016.03. It has been tested against Amazon Linux 2016.09 with equal success.
+This role was developed and tested against Red Hat Linux 7.3.
 
 Why Would I Use This Role?
 --------------------------
 
 If you are attempting to obtain compliance against an industry-accepted security standard, like PCI DSS, APRA or ISO 27001, then you need to demonstrate that you have applied documented hardening standards against all systems within scope of assessment.
 
-If you are running Amazon Linux, then this role attempts to provide one piece of the solution to the compliance puzzle.
+If you are running Red Hat Linux, then this role attempts to provide one piece of the solution to the compliance puzzle.
 
 Here Be Dragons!
 ----------------

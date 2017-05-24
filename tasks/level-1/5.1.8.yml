@@ -19,11 +19,12 @@
 - name: 5.1.8 -  Ensure at/cron is restricted to authorized users
   file: 
     path: "{{ item }}"
-#    state: file
+    state: file
     owner: root
     group: root
     mode: 0600
-  ignore_errors: yes
+  changed_when: false  
+#  ignore_errors: yes
   with_items:
     - "/etc/cron.allow"
     - "/etc/at.allow"

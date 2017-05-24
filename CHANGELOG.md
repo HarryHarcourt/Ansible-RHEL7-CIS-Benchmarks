@@ -40,3 +40,4 @@ Bugfixes:
 * Updated further sections, HTTP Servers, BIND, FTP, NFS and RPC
 * Finished off the section 2.2.* stuff ran through and still so odd things so will validate over next couple of days
 * Found error on the 3.1.1 -> 3.3.2 section, updated to include |bool at end of each when condition, enabled RedHat, 7.3 first
+* Fixed issues required for our Security Values so that it is all Idempotent, however have concerns over the file module as I had to add a "changed_when" to stop it "changed"

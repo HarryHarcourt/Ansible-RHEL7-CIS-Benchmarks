@@ -7,7 +7,7 @@
   template: src=templates/ntp.conf.j2
         dest=/etc/ntp.conf
         mode=644 owner=root group=root backup=true
-  notify: Restart ntp
+  notify: Restart ntpd
   tags:
     - level-1
     - section-4

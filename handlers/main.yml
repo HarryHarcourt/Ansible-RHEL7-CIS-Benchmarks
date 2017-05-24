@@ -14,9 +14,9 @@
 - name: Flush ipv4 route
   command: "sysctl -w net.ipv4.route.flush=1"
 
-- name: Restart ntp
+- name: Restart ntpd
   service:
-    name: ntp
+    name: ntpd
     state: restarted
 
 - name: Restart snmpd
