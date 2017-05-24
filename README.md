@@ -1,13 +1,16 @@
-anthcourtney.cis-amazon-linux
 HarryHarcourt.Ansible-RHEL7-CIS-Benchmarks
 =========
 
 All Credit goes to anthcourtney for the original framework found here: https://github.com/anthcourtney/ansible-role-cis-amazon-linux
 
 This implementation has been converted to Red Hat Enterprise Linux 7.X, whilst the roles applies to v2.0.0 of the CIS Amazon Linux Benchmarks, Amazon Linux is based on Red Hat and as such those benchmarks have been applied.
+
 This implementation has been made idempotent in many places.
+
 This implementation allows the enabling of and configuration of some services.
+
 The CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
+
 The CIS RHEL Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Red_Hat_Enterprise_Linux_7_Benchmark_v2.1.1.pdf>
 
 This role was developed and tested against Red Hat Linux 7.3.
