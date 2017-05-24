@@ -47,7 +47,7 @@ An example playbook which uses this role is as follows:
   become: yes
 
   roles:
-    - anthcourtney.cis-amazon-linux
+    - Ansible-RHEL7-CIS-Benchmarks 
 ```
 
 A more advanced example, which includes modifications to the default values used, as well as the exclusion of some items in the benchmark which are considered unnecessary for a fictional environment, is as follows:
@@ -70,7 +70,7 @@ A more advanced example, which includes modifications to the default values used
     cis_umask_default: 002
  
   roles:
-    - anthcourtney.cis-amazon-linux
+    - Ansible-RHEL7-CIS-Benchmarks
 
 ```
 
@@ -138,6 +138,7 @@ This role is compatible with the following versions of ansible:
 * 2.0.2
 * 2.1.3
 * 2.2.0
+* 2.3.0
 
 This role has not been tested against any other versions of ansible.
 
@@ -162,6 +163,8 @@ BSD.
 Author Information
 ------------------
 
-This role was developed by [Anth Courtney](https://au.linkedin.com/in/anthcourtney).
+The role was originally developed by [Anth Courtney](https://au.linkedin.com/in/anthcourtney).
+
+This role was further developed by [Ben Wright](https://www.linkedin.com/in/ben-wright-4a088033).
 
 All feedback, issues and PRs are encouraged and appreciated.
