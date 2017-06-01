@@ -1,14 +1,32 @@
 # Standards: 0.11
 ---
 
-# 3.6.1 Ensure iptables is installed
+# 3.6.1 Ensure firewalld is installed
+# NOTE REPLACED IPTABLES WITH FIREWALLD
 
-- name: 3.6.1 - Ensure iptables is installed
+- name: 3.6.1 - Ensure firewalld is installed
   yum:
-    name: "iptables"
-    state: latest
+    name: "{{ cis_firewalld_install.package }}"
+    state: "{{ cis_firewalld_install.state }}"
+  with_items:
+    - "{{ cis_firewalld_install }}"
+  when: cis_firewalld_install.state == "present"
   tags:
     - level-1
     - section-3
     - "3.6.1"
     - scored
+
+- name: 3.6.1 - Ensure firewalld is started
+  service:
+    name: "{{ cis_firewalld_install.service }}"
+    enabled: "{{ cis_firewalld_install.enabled }}"
+    state: "{{ cis_firewalld_install.rstate }}" 
+  with_items:
+    - "{{ cis_firewalld_install }}"
+  when: cis_firewalld_install.state == "present"
+  tags:
+   - level-1
+   - section-3
+   - "3.6.1"
+   - scored
