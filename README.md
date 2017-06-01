@@ -5,7 +5,7 @@ All Credit goes to anthcourtney for the original framework found here: https://g
 
 This implementation has been converted to Red Hat Enterprise Linux 7.X, whilst the roles applies to v2.0.0 of the CIS Amazon Linux Benchmarks, Amazon Linux is based on Red Hat and as such those benchmarks have been applied.
 
-This implementation has been made idempotent in many places.
+This implementation has been made idempotent in many places, and continues to be
 
 This implementation allows the enabling of and configuration of some services.
 
