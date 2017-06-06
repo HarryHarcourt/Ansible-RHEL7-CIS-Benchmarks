@@ -80,7 +80,7 @@
 - include: "level-1/1.8.yml"
   when: "'1.8' not in cis_level_1_exclusions"
 # Running 2.1.11 first as decides if xinetd is installed or not prior to standard services chargen etc.
-- include: "level-1/2.1.11.yml" 
+- include: "level-1/2.1.11.yml"
   when: "'2.1.11' not in cis_level_1_exclusions"
 - include: "level-1/2.1.1.yml"
   when: "'2.1.1' not in cis_level_1_exclusions"

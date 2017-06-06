@@ -12,7 +12,16 @@
     - section-1
     - "1.1.1.1"
     - scored
-  
+
+- name: 1.1.1.1 - Display registered value
+  debug:
+    msg: Output value for {{ modprobe_1_1_1_1 }}  
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.1"
+    - scored
+
 - name: 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled 
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
