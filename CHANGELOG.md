@@ -42,3 +42,5 @@ Bugfixes:
 * Found error on the 3.1.1 -> 3.3.2 section, updated to include |bool at end of each when condition, enabled RedHat, 7.3 first
 * Fixed issues required for our Security Values so that it is all Idempotent, however have concerns over the file module as I had to add a "changed_when" to stop it "changed"
 * Updated 1.1.18 to remove changed status but added debug message to check for any errors
+* Updated 1.1.18 to show what files are being set (thus idempotent)
+* Currently an error on the Yum Repo check (for me)

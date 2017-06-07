@@ -4,7 +4,7 @@
 # 1.1.18 Ensure sticky bit is set on all world-writable directories
 
 - name: 1.1.18 - Ensure sticky bit is set on all world-writable directories - changed_when false
-  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t"
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002"
   register: shell_output
   changed_when: false
   tags:
@@ -13,9 +13,22 @@
     - "1.1.18"
     - scored
 
-- name: 1.1.18 - Stdout from the shell command to check for errors
-  debug:
-    msg: "{{ shell_output }}"
+#- name: 1.1.18 - Stdout from the shell command to check for errors
+#  debug:
+#    msg: "{{ shell_output.stdout_lines }}"
+#  tags:
+#    - level-1
+#    - section-1
+#    - "1.1.18"
+#    - scored
+
+- name: 1.1.18 - Checking or Setting permissions on the world-writable directories
+  file:
+    path: "{{ item }}"
+    mode: a+t
+  with_items:
+    - "{{ shell_output.stdout_lines }}"
+  failed_when: shell_output.stderr is not defined
   tags:
     - level-1
     - section-1
