@@ -16,7 +16,7 @@
     - scored
 
 - name: 2.1.6 - If rsh server is installed start appropriate services
-  service: 
+  service:
     name: "{{ item.service }}"
     enabled: "{{ item.enabled }}"
     state: "{{ item.state }}"

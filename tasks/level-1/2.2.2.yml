@@ -1,12 +1,12 @@
 # Standards: 0.11
 ---
 
-# 2.2.2 Ensure X Window System is not installed 
+# 2.2.2 Ensure X Window System is not installed
 
 - name: 2.2.2 - Ensure X Window System is {{ cis_xwindows_install.state }}, exception {{ cis_xwindows_install.exception }}
   yum:
     name: "{{ item.package }}"
-    state: "{{ item.state }}" 
+    state: "{{ item.state }}"
   with_items:
     - "{{ cis_xwindows_install }}"
   tags:

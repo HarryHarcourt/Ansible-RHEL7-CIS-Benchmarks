@@ -3,10 +3,10 @@
 
 # Modified by Ben to test impact
 # cis_target_os_distribution: "Amazon"
-cis_target_os_distribution: 
+cis_target_os_distribution:
   - "RedHat"
   - "Amazon"
-cis_target_os_versions: 
+cis_target_os_versions:
   - "7.3"
   - "2016.03"
   - "2016.09"

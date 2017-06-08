@@ -45,3 +45,6 @@ Bugfixes:
 * Updated 1.1.18 to show what files are being set (thus idempotent)
 * Currently an error on the Yum Repo check (for me)
 * Uncommented other rules and ran through ok, there are still 1 which are not idempotent (1.2.2), and 2 which are fatal errors (1.5.4 - because of the way it checks for a binary, 5.1.8 - I think this is a file module bug) - one of these must also register a change
+* Not sure if stable or not - passed through "ansible-lint" - corrected NTP and SNMP for octets in relation file permissions
+* Also removed all white spaces at end of lines as per: find . -name \*.yml -exec sed -i '' -e 's/ $//' {} \;
+* Needs testing but think foobar'd it when enabling checks

@@ -31,12 +31,12 @@
     - scored
 
 - name: 3.3.2 - Displaying value of IPv6 redirects all
-  debug: 
+  debug:
     msg: The value for kernel_param_value is {{ v_3_3_2_kernel_param.results[0].stdout }}
 
 - name: 3.3.2 - Ensure IPv6 redirects are not accepted by active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
-  with_items: 
+  with_items:
     - "{{ v_3_3_2_ipv6_conf_all_accept_redirects }}"
   when: v_3_3_2_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
@@ -45,7 +45,7 @@
     - section-3
     - "3.3.2"
     - scored
-    
+
 - name: 3.3.2 - Get IPv6 redirects value from active kernel parameters
   command: "cat {{ item.proc_src }}"
   register: v_3_3_2_kernel_param
@@ -59,12 +59,12 @@
     - scored
 
 - name: 3.3.2 - Displaying value of IPv6 redirects default
-  debug: 
+  debug:
     msg: The value for kernel_param_value is {{ v_3_3_2_kernel_param.results[0].stdout }}
 
 - name: 3.3.2 - Ensure IPv6 redirects are not accepted by active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
-  with_items: 
+  with_items:
     - "{{ v_3_3_2_ipv6_conf_default_accept_redirects }}"
   when: v_3_3_2_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route

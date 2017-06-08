@@ -17,7 +17,7 @@
       file:
         path: "{{ playbook_dir }}/tmp"
         state: directory
-      
+
     - name: Create Dockerfile
       template:
         src: "{{ playbook_dir }}/templates/Dockerfile.j2"

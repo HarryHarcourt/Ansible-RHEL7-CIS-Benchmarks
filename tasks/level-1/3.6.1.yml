@@ -21,7 +21,7 @@
   service:
     name: "{{ cis_firewalld_install.service }}"
     enabled: "{{ cis_firewalld_install.enabled }}"
-    state: "{{ cis_firewalld_install.rstate }}" 
+    state: "{{ cis_firewalld_install.rstate }}"
   with_items:
     - "{{ cis_firewalld_install }}"
   when: cis_firewalld_install.state == "present"

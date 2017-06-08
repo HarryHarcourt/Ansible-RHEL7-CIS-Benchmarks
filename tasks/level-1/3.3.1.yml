@@ -18,7 +18,7 @@
     - "3.3.1"
     - scored
 
-- name: 3.3.1 - Get IPv6 router advertisments 
+- name: 3.3.1 - Get IPv6 router advertisments
   command: "cat {{ item.proc_src }}"
   register: v_3_3_1_kernel_param
   changed_when: false
@@ -31,12 +31,12 @@
     - scored
 
 - name: 3.3.1 - Displaying value for IPv6 advertisments
-  debug: 
+  debug:
     msg: The value for kernel_param_value is {{ v_3_3_1_kernel_param.results[0].stdout }}
 
 - name: 3.3.1 - Ensure IPv6 router advertisements are not accepted by active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
-  with_items: 
+  with_items:
     - "{{ v_3_3_1_ipv6_conf_all_accept_ra }}"
   when: v_3_3_1_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
@@ -46,7 +46,7 @@
     - "3.3.1"
     - scored
 
-- name: 3.3.1 - Get IPv6 router advertisments - default 
+- name: 3.3.1 - Get IPv6 router advertisments - default
   command: "cat {{ item.proc_src }}"
   register: v_3_3_1_kernel_param
   changed_when: false
@@ -59,12 +59,12 @@
     - scored
 
 - name: 3.3.1 - Displaying default value for IPv6 advertisments
-  debug: 
+  debug:
     msg: The value for kernel_param_value is {{ v_3_3_1_kernel_param.results[0].stdout }}
 
 - name: 3.3.1 - Ensure default IPv6 router advertisements are not accepted by active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
-  with_items: 
+  with_items:
     - "{{ v_3_3_1_ipv6_conf_default_accept_ra }}"
   when: v_3_3_1_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
@@ -73,4 +73,4 @@
     - section-3
     - "3.3.1"
     - scored
-    
+

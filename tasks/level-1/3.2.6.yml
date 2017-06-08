@@ -29,13 +29,13 @@
     - "3.2.6"
     - scored
 
-- name: 3.2.6 - Displaying value for bogus ICMP responses 
-  debug: 
+- name: 3.2.6 - Displaying value for bogus ICMP responses
+  debug:
     msg: The value for kernel_param_value is {{ v_3_2_6_kernel_param.results[0].stdout }}
 
 - name: 3.2.6 - Ensure bogus ICMP responses are ignored by active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
-  with_items: 
+  with_items:
     - "{{ v_3_2_6_ipv4_icmp_echo_ignore_bogus_error_responses }}"
   when: v_3_2_6_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route

@@ -3,7 +3,7 @@
 
 # 2.2.12 Ensure SMB services is not enabled
 
-- name: 2.2.12 - Ensure SMB services are {{ cis_smb_install.state }} with exception {{ cis_smb_install.exception }} 
+- name: 2.2.12 - Ensure SMB services are {{ cis_smb_install.state }} with exception {{ cis_smb_install.exception }}
   yum:
     name: "{{ item.package }}"
     state: "{{ item.state }}"

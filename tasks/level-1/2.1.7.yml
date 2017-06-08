@@ -16,7 +16,7 @@
     - scored
 
 - name: 2.1.7 - If talkd server is installed set appropriate service - {{ cis_talkd_install.exception }}
-  service: 
+  service:
     name: "{{ item.service }}"
     enabled: "{{ item.enabled }}"
     state: "{{ item.rstate }}"

@@ -16,7 +16,7 @@
     - scored
 
 - name: 2.1.11 - If xinetd server is installed set appropriate service - {{ cis_xinetd_install.exception }}
-  service: 
+  service:
     name: "{{ item.service }}"
     enabled: "{{ item.enabled }}"
     state: "{{ item.rstate }}"

@@ -16,7 +16,7 @@
     - scored
 
 - name: 2.1.8 - If telnet server is installed set appropriate service - {{ cis_telnet_install.exception }}
-  service: 
+  service:
     name: "{{ item.service }}"
     enabled: "{{ item.enabled }}"
     state: "{{ item.rstate }}"

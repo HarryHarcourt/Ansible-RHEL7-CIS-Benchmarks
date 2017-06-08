@@ -26,12 +26,12 @@
     - scored
 
 - name: 3.1.1 - Displaying value
-  debug: 
+  debug:
     msg: The value for kernel_param_value is {{ v_3_1_1_kernel_param.results[0].stdout }}
 
 - name: 3.1.1 - Ensure IP forwarding is disabled in active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
-  with_items: 
+  with_items:
     - "{{ v_3_1_1_ipv4_ip_forward }}"
   when: "{{ v_3_1_1_kernel_param.results[0].stdout }} != {{ item.value }}"
   notify: Flush ipv4 route

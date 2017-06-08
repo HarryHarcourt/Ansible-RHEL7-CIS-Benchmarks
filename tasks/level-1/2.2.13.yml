@@ -3,7 +3,7 @@
 
 # 2.2.13 Ensure squid services is not enabled
 
-- name: 2.2.13 - Ensure Squid services are {{ cis_squid_install.state }} with exception {{ cis_squid_install.exception }} 
+- name: 2.2.13 - Ensure Squid services are {{ cis_squid_install.state }} with exception {{ cis_squid_install.exception }}
   yum:
     name: "{{ item.package }}"
     state: "{{ item.state }}"
