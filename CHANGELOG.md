@@ -44,3 +44,4 @@ Bugfixes:
 * Updated 1.1.18 to remove changed status but added debug message to check for any errors
 * Updated 1.1.18 to show what files are being set (thus idempotent)
 * Currently an error on the Yum Repo check (for me)
+* Uncommented other rules and ran through ok, there are still 1 which are not idempotent (1.2.2), and 2 which are fatal errors (1.5.4 - because of the way it checks for a binary, 5.1.8 - I think this is a file module bug) - one of these must also register a change
