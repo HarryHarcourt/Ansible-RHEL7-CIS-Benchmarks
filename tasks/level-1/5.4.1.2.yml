@@ -25,9 +25,20 @@
     - "5.4.1.2"
     - scored
 
-- name: 5.4.1.2 - Set minimum password change interval for all user accounts
+- name: 5.4.1.2 - Display the users where chage will address
+  debug:
+    msg: Users are - {{ egrep_5_4_1_2 }}
+  tags:
+    - level-1
+    - section-5
+    - "5.4.1.2"
+    - scored
+
+- name: 5.4.1.2 - Set minimum password change interval for all user accounts with passwords
   shell: "chage --mindays {{ cis_pass_min_days }} {{ item }}"
-  with_items: "{{ egrep_5_4_1_2.stdout|default([]) }}"
+  with_items: 
+    - "{{ egrep_5_4_1_2.stdout|default([]) }}"
+  when: egrep_5_4_1_2.stdout is defined
   tags:
     - level-1
     - section-5

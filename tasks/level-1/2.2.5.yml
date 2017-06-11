@@ -21,6 +21,7 @@
     state: "{{ item.rstate }}"
   with_items:
     - "{{ cis_dhcpd_install }}"
+  when: cis_dhcpd_install.state == "present"
   tags:
     - level-1
     - "2.2.5"

@@ -48,3 +48,5 @@ Bugfixes:
 * Not sure if stable or not - passed through "ansible-lint" - corrected NTP and SNMP for octets in relation file permissions
 * Also removed all white spaces at end of lines as per: find . -name \*.yml -exec sed -i '' -e 's/ $//' {} \;
 * Needs testing but think foobar'd it when enabling checks
+* Seems all clear with a couple of run throughs, enabled more but there are still a number of changes that need to be addressed 
+* Will fix my additions to change logs in next iteration
