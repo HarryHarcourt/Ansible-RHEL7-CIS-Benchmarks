@@ -1,3 +1,27 @@
+1.1.4 (2017-06-23)
+* Removed the ~ file from the default directory (sorry)
+* 5.4.1.4 - updated the when clause on the set max password so that if there are no users it won't error out
+* MOVING ALL MY CHANGES BELOW THIS ONE:
+* Updated many of the tasks from 3.1.1 -> 3.3.2 and made them idempotent, thus they set the value in sysctl, then check the /proc values before setting the value in the kernel
+* Updated many of the tasks from 2.1.1 -> 2.1.11 to make them idempotent, they will also take lead from the defaults where instead of disabling the services we remove their binaries
+* Moved 2.1.11 to run before 2.1.1 because without the xinetd package installed you cannot configure the other bases services
+* Updated NTP, and xorg-X11
+* Updated multiple sections, Avahi, DHCP, OpenLDAP, CUPS, so the services can be installed and enabled if required
+* Updated further sections, HTTP Servers, BIND, FTP, NFS and RPC
+* Finished off the section 2.2.* stuff ran through and still so odd things so will validate over next couple of days
+* Found error on the 3.1.1 -> 3.3.2 section, updated to include |bool at end of each when condition, enabled RedHat, 7.3 first
+* Fixed issues required for our Security Values so that it is all Idempotent, however have concerns over the file module as I had to add a "changed_when" to stop it "changed"
+* Updated 1.1.18 to remove changed status but added debug message to check for any errors
+* Updated 1.1.18 to show what files are being set (thus idempotent)
+* Currently an error on the Yum Repo check (for me)
+* Uncommented other rules and ran through ok, there are still 1 which are not idempotent (1.2.2), and 2 which are fatal errors (1.5.4 - because of the way it checks for a binary, 5.1.8 - I think this is a file module bug) - one of these must also register a change
+* Not sure if stable or not - passed through "ansible-lint" - corrected NTP and SNMP for octets in relation file permissions
+* Also removed all white spaces at end of lines as per: find . -name \*.yml -exec sed -i '' -e 's/ $//' {} \;
+* Needs testing but think foobar'd it when enabling checks
+* Seems all clear with a couple of run throughs, enabled more but there are still a number of changes that need to be addressed
+* Will fix my additions to change logs in next iteration
+* Fixed 5.4.3 to make it idempotent and specific to the ask that GID of root is 0
+
 1.1.3 (2017-01-10)
 
 Enhancement:
@@ -30,23 +54,4 @@ Bugfixes:
 
 * Initial release.
 
-1.0.1 (2017-05-07)
 
-* Updated many of the tasks from 3.1.1 -> 3.3.2 and made them idempotent, thus they set the value in sysctl, then check the /proc values before setting the value in the kernel
-* Updated many of the tasks from 2.1.1 -> 2.1.11 to make them idempotent, they will also take lead from the defaults where instead of disabling the services we remove their binaries
-* Moved 2.1.11 to run before 2.1.1 because without the xinetd package installed you cannot configure the other bases services
-* Updated NTP, and xorg-X11
-* Updated multiple sections, Avahi, DHCP, OpenLDAP, CUPS, so the services can be installed and enabled if required
-* Updated further sections, HTTP Servers, BIND, FTP, NFS and RPC
-* Finished off the section 2.2.* stuff ran through and still so odd things so will validate over next couple of days
-* Found error on the 3.1.1 -> 3.3.2 section, updated to include |bool at end of each when condition, enabled RedHat, 7.3 first
-* Fixed issues required for our Security Values so that it is all Idempotent, however have concerns over the file module as I had to add a "changed_when" to stop it "changed"
-* Updated 1.1.18 to remove changed status but added debug message to check for any errors
-* Updated 1.1.18 to show what files are being set (thus idempotent)
-* Currently an error on the Yum Repo check (for me)
-* Uncommented other rules and ran through ok, there are still 1 which are not idempotent (1.2.2), and 2 which are fatal errors (1.5.4 - because of the way it checks for a binary, 5.1.8 - I think this is a file module bug) - one of these must also register a change
-* Not sure if stable or not - passed through "ansible-lint" - corrected NTP and SNMP for octets in relation file permissions
-* Also removed all white spaces at end of lines as per: find . -name \*.yml -exec sed -i '' -e 's/ $//' {} \;
-* Needs testing but think foobar'd it when enabling checks
-* Seems all clear with a couple of run throughs, enabled more but there are still a number of changes that need to be addressed 
-* Will fix my additions to change logs in next iteration

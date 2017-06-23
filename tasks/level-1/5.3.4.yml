@@ -3,8 +3,20 @@
 
 # 5.3.4 Ensure password hashing algorithm is SHA-512
 
+- name: 5.3.4 - Check password hashing algorithm is SHA-512
+  command: awk /sha512/ /etc/pam.d/password-auth
+  register: sha512_check
+  changed_when: false
+  tags:
+    - level-1
+    - section-5
+    - "5.3.4"
+    - scored
+
 - name: 5.3.4 - Ensure password hashing algorithm is SHA-512
   command: "authconfig --update --passalgo=sha512"
+  when: sha512_check.stdout is undefined
+  changed_when: false
   tags:
     - level-1
     - section-5

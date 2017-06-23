@@ -7,6 +7,8 @@
 # executing 'yum repolist' results in no errors.
 - name: 1.2.1 - Verify that repositories are configured correctly
   command: yum repolist
+  args:
+    warn: false
   changed_when: false
   tags:
     - level-1

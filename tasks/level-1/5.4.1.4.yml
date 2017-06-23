@@ -39,6 +39,7 @@
 - name: 5.4.1.4 - Set inactive password lock for all user accounts
   shell: "chage --inactive {{ cis_pass_inactive_lock }} {{ item }}"
   with_items: "{{ egrep_5_4_1_4.stdout_lines|default([]) }}"
+  changed_when: false
   tags:
     - level-1
     - section-5

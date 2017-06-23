@@ -16,8 +16,10 @@
 
 - name: 5.4.2 - Lock system user passwords
   shell: "usermod -L {{ item }}"
-  with_items: "{{ audit_5_4_2.stdout_lines|default([]) }}"
+  with_items: 
+    - "{{ audit_5_4_2.stdout_lines|default([]) }}"
   when: item != "root"
+  changed_when: false
   tags:
     - level-1
     - section-5
