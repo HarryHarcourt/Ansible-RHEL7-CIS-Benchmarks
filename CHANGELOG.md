@@ -1,3 +1,5 @@
+1.1.5 (2017-07-10)
+* Updated for Ansible-lint to pass
 1.1.4 (2017-06-23)
 * Removed the ~ file from the default directory (sorry)
 * 5.4.1.4 - updated the when clause on the set max password so that if there are no users it won't error out
