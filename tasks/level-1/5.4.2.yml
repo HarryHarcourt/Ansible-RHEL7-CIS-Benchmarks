@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 5.4.2 Ensure system accounts are non-login
@@ -13,10 +13,11 @@
     - section-5
     - "5.4.2"
     - scored
+    - skip_ansible_lint
 
 - name: 5.4.2 - Lock system user passwords
   shell: "usermod -L {{ item }}"
-  with_items: 
+  with_items:
     - "{{ audit_5_4_2.stdout_lines|default([]) }}"
   when: item != "root"
   changed_when: false
@@ -25,12 +26,14 @@
     - section-5
     - "5.4.2"
     - scored
+    - skip_ansible_lint
 
 - name: 5.4.2 - Ensure system accounts are non-login
   user:
     name: "{{ item }}"
     shell: "/sbin/nologin"
-  with_items: "{{ audit_5_4_2.stdout_lines|default([]) }}"
+  with_items:
+    - "{{ audit_5_4_2.stdout_lines|default([]) }}"
   when: "item not in cis_skip_lock_users"
   tags:
     - level-1

@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 5.4.1.2 Ensure minimum days between password changes is 7 or more
@@ -13,6 +13,7 @@
     - section-5
     - "5.4.1.2"
     - scored
+    - skip_ansible_lint
 
 - name: 5.4.1.2 - Ensure minimum days between password changes is 7 or more
   lineinfile:
@@ -36,7 +37,7 @@
 
 - name: 5.4.1.2 - Set minimum password change interval for all user accounts with passwords
   shell: "chage --mindays {{ cis_pass_min_days }} {{ item }}"
-  with_items: 
+  with_items:
     - "{{ egrep_5_4_1_2.stdout|default([]) }}"
   when: egrep_5_4_1_2.stdout != ""
   changed_when: false
@@ -45,3 +46,4 @@
     - section-5
     - "5.4.1.2"
     - scored
+    - skip_ansible_lint

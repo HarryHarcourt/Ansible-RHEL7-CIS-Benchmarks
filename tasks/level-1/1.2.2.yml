@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 1.2.2 Ensure GPG keys are configured
@@ -14,8 +14,9 @@
     - level-1
     - "1.2.2"
     - scored
+    - skip_ansible_lint
 
 #- name: 1.2.2 - Check GPG keys are configured
-#  debug: 
+#  debug:
 #    msg: GPG keys are incorrectly configured
-#  when: 
+#  when:

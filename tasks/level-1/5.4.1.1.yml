@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 5.4.1.1 Ensure password expiration is 90 days or less
@@ -13,6 +13,7 @@
     - section-5
     - "5.4.1.1"
     - scored
+    - skip_ansible_lint
 
 - name: 5.4.1.1 - Ensure password expiration is 90 days or less
   lineinfile:
@@ -34,3 +35,4 @@
     - section-5
     - "5.4.1.1"
     - scored
+    - skip_ansible_lint

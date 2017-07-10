@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 5.4.1.4 Ensure inactive password lock is 30 days or less
@@ -13,6 +13,7 @@
     - section-5
     - "5.4.1.4"
     - scored
+    - skip_ansible_lint
 
 - name: 5.4.1.4 - Ensure inactive password lock is 30 days or less
   lineinfile:
@@ -35,13 +36,14 @@
     - "5.4.1.4"
     - scored
 
-
 - name: 5.4.1.4 - Set inactive password lock for all user accounts
   shell: "chage --inactive {{ cis_pass_inactive_lock }} {{ item }}"
-  with_items: "{{ egrep_5_4_1_4.stdout_lines|default([]) }}"
+  with_items:
+    - "{{ egrep_5_4_1_4.stdout_lines|default([]) }}"
   changed_when: false
   tags:
     - level-1
     - section-5
     - "5.4.1.4"
     - scored
+    - skip_ansible_lint

@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 4.2.2.1 Ensure syslog-ng service is enabled
@@ -13,6 +13,7 @@
     - section-4
     - "4.2.2.1"
     - scored
+    - skip_ansible_lint
 
 - name: 4.2.2.1 - Ensure syslog-ng service is enabled
   service:

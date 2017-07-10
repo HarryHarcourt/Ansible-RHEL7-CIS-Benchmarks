@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.5
 ---
 
 # 4.2.4 Ensure permissions on all logfiles are configured
@@ -10,3 +10,4 @@
     - section-4
     - "4.2.4"
     - scored
+    - skip_ansible_lint
