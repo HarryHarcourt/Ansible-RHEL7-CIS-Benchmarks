@@ -1,3 +1,7 @@
+1.1.7 (2017-07-12)
+* Tested against RHEL7, 7.1, 7.2 and 7.3
+* Updated 1.2.2 to make idempotent, currently displaying the GPG Keys not validating them, how? Seems to only be oone set of keys as well, is this true with so many repositories? Display issue?
+
 1.1.6 (2017-07-11)
 * Updated 6.1.11, 6.1.12, 6.1.13 and 6.1.14 to changed_when false to stop changes appearing
 * Updated the vars/main to be specific to RHEL and CentOS (will test at a later date)

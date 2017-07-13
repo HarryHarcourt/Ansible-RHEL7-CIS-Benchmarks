@@ -8,6 +8,7 @@ cis_target_os_distribution:
 cis_target_os_versions:
   - "7.0"
   - "7.1"
+  - "7.2"
   - "7.3"
 
 cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"

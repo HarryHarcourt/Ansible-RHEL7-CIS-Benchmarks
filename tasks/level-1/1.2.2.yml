@@ -1,4 +1,4 @@
-# Standards: 1.1.5
+# Standards: 1.1.7
 ---
 
 # 1.2.2 Ensure GPG keys are configured
@@ -7,7 +7,8 @@
 # executing the specified rpm command results in no errors.
 - name: 1.2.2 - Ensure GPG keys are configured
   shell: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
-#  register: gpg-pubkey_check
+  register: gpg_pubkey_check
+  changed_when: false
   args:
     warn: false
   tags:
@@ -16,7 +17,10 @@
     - scored
     - skip_ansible_lint
 
-#- name: 1.2.2 - Check GPG keys are configured
-#  debug:
-#    msg: GPG keys are incorrectly configured
-#  when:
+- name: 1.2.2 - Check GPG keys are configured
+  debug:
+    msg: RPM command output is {{ gpg_pubkey_check.stdout }}
+  tags:
+    - level-1
+    - "1.2.2"
+    - scored
