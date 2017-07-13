@@ -1,15 +1,16 @@
-# Standards: 0.11
+# Standards: 1.1.16
 
 galaxy_info:
-  author: Anth Courtney
-  description: Implement CIS Amazon Linux V2 Benchmark
-  company: JemJuliet Pty Ltd
+  author: Anth Courtney / Ben Wright
+  description: Implement CIS Amazon Linux V2 Benchmark -> Implementation CIS RHEL/CentOS Linux V2 Benchmark
+  company: JemJuliet Pty Ltd / Interested Party
   license: MIT
   min_ansible_version: 2.0
   platforms:
-  - name: Amazon
+  - name: RHEL
     versions:
-    - "2016.03"
-    - "2016.09"
-  galaxy_tags: ['CIS','Linux','Amazon','hardening','benchmark','PCIDSS','compliance']
+    - "7.0"
+    - "7.1"
+    - "7.2"
+  galaxy_tags: ['CIS','Linux','RHEL','CentOS','hardening','benchmark','PCIDSS','compliance']
 dependencies: []

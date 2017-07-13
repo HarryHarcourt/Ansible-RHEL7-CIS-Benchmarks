@@ -1,7 +1,11 @@
+1.1.6 (2017-07-11)
+* Updated 6.1.11, 6.1.12, 6.1.13 and 6.1.14 to changed_when false to stop changes appearing
+* Updated the vars/main to be specific to RHEL and CentOS (will test at a later date)
+* Updated the meta/main to include myself #:-) and update the versions it can be applied to
 
 1.1.5 (2017-07-10)
 * Updated for Ansible-lint to pass
-
+ 
 1.1.4 (2017-06-23)
 * Removed the ~ file from the default directory (sorry)
 * 5.4.1.4 - updated the when clause on the set max password so that if there are no users it won't error out
