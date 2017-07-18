@@ -1,3 +1,12 @@
+1.1.8 (2017-07-17)
+* These are the modules that require idempotent changes: 
+1.5.4 - prelink binary - challenge with ansible file module
+* 4.2.1.1 - Check if rsyslog is installed - fixed by using yum module and the variable check in the defaults/main.yml
+* 4.2.4 - Check log file permissions are configured - fixed, changed command to two part, find and then set using the file module
+5.1.8 - Ensure cron/allow is restricted for authorized users, think same problem with ansible file module
+* 6.1.6 - Ensure permissions on /etc/passwd- is set correct, problem with - at end of file name - fixed by wrapping the path in quotes
+
+
 1.1.7 (2017-07-12)
 * Tested against RHEL7, 7.1, 7.2 and 7.3
 * Updated 1.2.2 to make idempotent, currently displaying the GPG Keys not validating them, how? Seems to only be oone set of keys as well, is this true with so many repositories? Display issue?
