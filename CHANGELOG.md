@@ -1,6 +1,9 @@
+1.1.9 (2017-07-18)
+* 1.5.4 - prelink binary check - got rid of error message, but could not validate "installed" state to restore the prelink binaries prior to prelink removal
+
 1.1.8 (2017-07-17)
 * These are the modules that require idempotent changes: 
-1.5.4 - prelink binary - challenge with ansible file module
+1.5.4 - prelink binary - challenge - trying to get rid of failed error message
 * 4.2.1.1 - Check if rsyslog is installed - fixed by using yum module and the variable check in the defaults/main.yml
 * 4.2.4 - Check log file permissions are configured - fixed, changed command to two part, find and then set using the file module
 5.1.8 - Ensure cron/allow is restricted for authorized users, think same problem with ansible file module

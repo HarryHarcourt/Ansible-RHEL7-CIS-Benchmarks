@@ -1,12 +1,26 @@
-# Standards: 1.1.5
+# Standards: 1.1.9
 ---
 
 # 1.5.4 Ensure prelink is disabled
 
 - name: 1.5.4 - Check if prelink binary exists
-  command: which prelink
-  ignore_errors: true
+  yum:
+    list: prelink
+#    name: prelink
+#    state: present
+#  command: which prelink
+#  command: rpm -q prelink
+#  ignore_errors: true
   register: which_1_5_4
+  tags:
+    - level-1
+    - "1.5.4"
+    - scored
+    - skip_ansible_lint
+
+- name: 1.5.4 - Display registered output
+  debug:
+    msg: Ouput message is {{ which_1_5_4 }}
   tags:
     - level-1
     - "1.5.4"
@@ -15,7 +29,10 @@
 
 - name: 1.5.4 - Restore prelinked binaries
   command: prelink -ua
-  when: which_1_5_4.rc is defined and which_1_5_4.rc == 0
+#  when: which_1_5_4.rc is defined and which_1_5_4.rc == 0
+#  when: which_1_5_4.results.yumstate == 'installed'
+#  when: which_1_5_4.results | search("installed")
+  when: "'installed' in which_1_5_4.results"
   tags:
     - level-1
     - "1.5.4"
