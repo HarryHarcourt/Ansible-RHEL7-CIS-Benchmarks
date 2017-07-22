@@ -1,4 +1,4 @@
-# Standards: 1.1.5
+# Standards: 1.1.21
 ---
 
 # 5.4.1.2 Ensure minimum days between password changes is 7 or more
@@ -38,7 +38,7 @@
 - name: 5.4.1.2 - Set minimum password change interval for all user accounts with passwords
   shell: "chage --mindays {{ cis_pass_min_days }} {{ item }}"
   with_items:
-    - "{{ egrep_5_4_1_2.stdout|default([]) }}"
+    - "{{ egrep_5_4_1_2.stdout_lines|default([]) }}"
   when: egrep_5_4_1_2.stdout != ""
   changed_when: false
   tags:

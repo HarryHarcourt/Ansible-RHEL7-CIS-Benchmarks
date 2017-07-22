@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.21 
 ---
 
 # 5.1.8 Ensure at/cron is restricted to authorized users
@@ -16,18 +16,48 @@
     - "5.1.8"
     - scored
 
-- name: 5.1.8 -  Ensure at/cron is restricted to authorized users
+- name: 5.1.8 - Check at.allow for presents
+  stat:
+    path: /etc/at.allow
+  register: at
+  tags:
+    - level-1
+    - section-5
+    - "5.1.8"
+    - scored
+
+- name: 5.1.8 -  Ensure at is restricted to authorized users
   file:
-    path: "{{ item }}"
+    path: /etc/at.allow
     state: file
     owner: root
     group: root
     mode: 0600
-  changed_when: false
-  ignore_errors: yes
-  with_items:
-    - "/etc/cron.allow"
-    - "/etc/at.allow"
+  when: at.stat.exists == true
+  tags:
+    - level-1
+    - section-5
+    - "5.1.8"
+    - scored
+
+- name: 5.1.8 - Check cron.allow for presents
+  stat:
+    path: /etc/cron.allow
+  register: cron
+  tags:
+    - level-1
+    - section-5
+    - "5.1.8"
+    - scored
+
+- name: 5.1.8 -  Ensure cron is restricted to authorized users
+  file:
+    path: /etc/cron.allow
+    state: file
+    owner: root
+    group: root
+    mode: 0600
+  when: cron.stat.exists == true
   tags:
     - level-1
     - section-5

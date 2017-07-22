@@ -6,9 +6,7 @@
 - name: 4.2.1.1 - Check if rsyslog is installed
   yum:
     name: rsyslog
-    state: present 
-#  command: yum -q list rsyslog
-#  ignore_errors: true
+    state: present
   when: cis_enable_rsyslog
 #  register: rsyslog_4_2_1_1
   tags:

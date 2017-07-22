@@ -1,3 +1,12 @@
+1.1.21 (2017-07-21)
+* Addressing 5.3.2 and 5.3.3 - because of nature merging them together into one template file
+* Fixed white space from ansible-lint in 4.2.4
+* Addressed "failed" in 5.1.8 if the file does not exist, test for presents and then chown, chmod
+* Fixed 5.4.1.2 where stdout needed to be changed to stdout_lines for multiple users
+
+1.1.20 (2017-07-19)
+* Added variables for 5.3.2 and 5.3.3 for failed logins and password reuse to default/main.yml
+
 1.1.9 (2017-07-18)
 * 1.5.4 - prelink binary check - got rid of error message, but could not validate "installed" state to restore the prelink binaries prior to prelink removal
 
