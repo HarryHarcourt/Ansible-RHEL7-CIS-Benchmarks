@@ -28,8 +28,9 @@
 
 - name: 5.4.1.1 - Set password expiration for all user accounts
   shell: "chage --maxdays {{ cis_pass_max_days }} {{ item }}"
-  with_items: "{{ egrep_5_4_1_1.stdout_lines|default([]) }}"
-#  changed_when: False
+  with_items:
+    - "{{ egrep_5_4_1_1.stdout_lines|default([]) }}"
+  changed_when: false
   tags:
     - level-1
     - section-5

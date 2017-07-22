@@ -1,10 +1,9 @@
-# Standards: 1.1.8
+# Standards: 1.1.21
 ---
 
 # 4.2.4 Ensure permissions on all logfiles are configured
 
 - name: 4.2.4 - Find logfiles in /var/log
-#  shell: "find /var/log -type f -exec chmod g-wx,o-rwx {} +"
   shell: "find /var/log -type f"
   register: find_logfiles_4_2_4
   changed_when: false

@@ -1,14 +1,37 @@
-# Standards: 0.11
+# Standards: 1.1.21
 ---
 
 # 5.3.2 Ensure lockout for failed password attempts is configured
 
-- name: 5.3.2 - Ensure lockout for failed password attempts is configured
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+- name: 5.3.2 and 5.3.3 - Ensure lockout for failed login attempts and password history - for password-auth and system-auth
+  template:
+    src: 'templates/{{ item.src }}'
+    dest: '/etc/pam.d/{{ item.dest }}'
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  with_items:
+    - { src: 'password-auth-local.j2', dest: 'password-auth-local' }
+    - { src: 'system-auth-local.j2', dest: 'system-auth-local' }
   tags:
     - level-1
     - section-5
     - "5.3.2"
     - scored
-    - todo
+
+- name: 5.3.2 and 5.3.3 - Link password|system-auth-local to password|system-auth
+  file:
+    src: '/etc/pam.d/{{ item.src }}'
+    dest: '/etc/pam.d/{{ item.dest }}'
+    owner: root
+    group: root
+    state: link
+  with_items:
+    - { src: 'password-auth-local', dest: 'password-auth' }
+    - { src: 'system-auth-local', dest: 'system-auth' }
+  tags:
+    - level-1
+    - section-5
+    - "5.3.2"
+    - scored
