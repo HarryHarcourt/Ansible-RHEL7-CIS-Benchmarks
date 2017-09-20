@@ -9,10 +9,6 @@ galaxy_info:
   platforms:
   - name: EL
     versions:
-    - "7.0"
-    - "7.1"
-    - "7.2"
-    - "7.3"
-    - "7.4"
+    - "7"
   galaxy_tags: ['CIS','Linux','RHEL','EL','CentOS','hardening','benchmark','PCIDSS','compliance']
 dependencies: []

@@ -1,5 +1,5 @@
 1.1.23 (2017-09-19)
-* Updated the meta/main.yml to change from RHEL to EL
+* Updated the meta/main.yml to change from RHEL to EL, reduced versions to just EL 7 (from 7.0, 7.1 etc, these are contained in the vars)
 * Tested, loosely on RHEL 7.4 and it worked - need to do more testing - Ansible containers?
 
 1.1.22 (2017-07-31)
