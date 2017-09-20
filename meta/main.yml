@@ -1,4 +1,4 @@
-# Standards: 1.1.16
+# Standards: 1.1.23
 
 galaxy_info:
   author: Anth Courtney / Ben Wright
@@ -7,10 +7,12 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.0
   platforms:
-  - name: RHEL
+  - name: EL
     versions:
     - "7.0"
     - "7.1"
     - "7.2"
-  galaxy_tags: ['CIS','Linux','RHEL','CentOS','hardening','benchmark','PCIDSS','compliance']
+    - "7.3"
+    - "7.4"
+  galaxy_tags: ['CIS','Linux','RHEL','EL','CentOS','hardening','benchmark','PCIDSS','compliance']
 dependencies: []

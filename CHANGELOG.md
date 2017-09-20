@@ -1,3 +1,7 @@
+1.1.23 (2017-09-19)
+* Updated the meta/main.yml to change from RHEL to EL
+* Tested, loosely on RHEL 7.4 and it worked - need to do more testing - Ansible containers?
+
 1.1.22 (2017-07-31)
 * Commented out chage on 5.4.1.2 on last two sections, there should be a qualifier that checks if 7 is present before resetting the user because I think this does not let the user actually change their password if it is run within 7 days
 
