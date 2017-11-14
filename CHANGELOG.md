@@ -1,3 +1,7 @@
+1.1.24 (2017-11-13)
+* Updated namespaces by adding cis_ at the front for future role integration on the following tasks, 2.2.1.2, 2.2.14, 3.1.1, 3.1.2, 3.2.1, 3.2.2, 3.2.3, 3.2.4, 3.2.5, 3.2.6, 3.2.7, 3.3.1, 3.3.2, 3.3.8
+* Updated 6.1.6 to stat the file getting its mode first then, if it does not match 0600 it will change it (still having challenges with this file.....
+
 1.1.23 (2017-09-19)
 * Updated the meta/main.yml to change from RHEL to EL, reduced versions to just EL 7 (from 7.0, 7.1 etc, these are contained in the vars)
 * Tested, loosely on RHEL 7.4 and it worked - need to do more testing - Ansible containers?

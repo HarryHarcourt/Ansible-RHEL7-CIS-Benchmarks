@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.24 
 ---
 
 # 3.2.8 Ensure TCP SYN Cookies is enabled
@@ -10,7 +10,7 @@
     value: "{{ item.value }}"
     state: present
   with_items:
-    - "{{ v_3_2_8_ipv4_tcp_syncookies }}"
+    - "{{ cis_v_3_2_8_ipv4_tcp_syncookies }}"
   tags:
     - level-1
     - section-3
@@ -22,7 +22,7 @@
   register: v_3_2_8_kernel_param
   changed_when: false
   with_items:
-    - "{{ v_3_2_8_ipv4_tcp_syncookies }}"
+    - "{{ cis_v_3_2_8_ipv4_tcp_syncookies }}"
   tags:
     - level-1
     - section-3
@@ -36,7 +36,7 @@
 - name: 3.2.8 - Ensure TCP SYN Cookies is enabled by active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
   with_items:
-    - "{{ v_3_2_8_ipv4_tcp_syncookies }}"
+    - "{{ cis_v_3_2_8_ipv4_tcp_syncookies }}"
   when: v_3_2_8_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
   tags:
@@ -44,4 +44,3 @@
     - section-3
     - "3.2.8"
     - scored
-

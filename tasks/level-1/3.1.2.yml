@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.1.24
 ---
 
 # 3.1.2 Ensure packet redirect sending is disabled
@@ -10,8 +10,8 @@
     value: "{{ item.value }}"
     state: present
   with_items:
-    - "{{ v_3_1_2_ipv4_conf_all_send_redirects }}"
-    - "{{ v_3_1_2_ipv4_conf_default_send_redirects }}"
+    - "{{ cis_v_3_1_2_ipv4_conf_all_send_redirects }}"
+    - "{{ cis_v_3_1_2_ipv4_conf_default_send_redirects }}"
   tags:
     - level-1
     - section-3
@@ -23,7 +23,7 @@
   register: v_3_1_2_kernel_param
   changed_when: false
   with_items:
-    - "{{ v_3_1_2_ipv4_conf_all_send_redirects }}"
+    - "{{ cis_v_3_1_2_ipv4_conf_all_send_redirects }}"
   tags:
     - level-1
     - section-3
@@ -42,7 +42,7 @@
 - name: 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
   with_items:
-    - "{{ v_3_1_2_ipv4_conf_all_send_redirects }}"
+    - "{{ cis_v_3_1_2_ipv4_conf_all_send_redirects }}"
   when: v_3_1_2_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
   tags:
@@ -56,7 +56,7 @@
   register: v_3_1_2_kernel_param
   changed_when: false
   with_items:
-    - "{{ v_3_1_2_ipv4_conf_default_send_redirects }}"
+    - "{{ cis_v_3_1_2_ipv4_conf_default_send_redirects }}"
   tags:
     - level-1
     - section-3
@@ -75,7 +75,7 @@
 - name: 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters
   command: "sysctl -w {{ item.kernel_param }}={{ item.value }}"
   with_items:
-    - "{{ v_3_1_2_ipv4_conf_default_send_redirects }}"
+    - "{{ cis_v_3_1_2_ipv4_conf_default_send_redirects }}"
   when: v_3_1_2_kernel_param.results[0].stdout|bool != item.value
   notify: Flush ipv4 route
   tags:

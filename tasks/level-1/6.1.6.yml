@@ -1,7 +1,26 @@
-# Standards: 1.1.8
+# Standards: 1.1.24
 ---
 
 # 6.1.6 Ensure permissions on /etc/passwd- are configured
+
+- name: 6.1.6 - Discover permissions on /etc/passwd- (as Ansible cannot file it)
+  stat:
+    path: "/etc/passwd-"
+  register: cis_st
+  tags:
+    - level-1
+    - section-6
+    - "6.1.6"
+    - scored
+
+- name: 6.1.6 - Display the file /etc/passd- mode
+  debug:
+    msg: The file mode is {{ cis_st.stat.mode }} expecting 0600
+  tags:
+    - level-1
+    - section-6
+    - "6.1.6"
+    - scored
 
 - name: 6.1.6 - Ensure permissions on /etc/passwd- are configured
   file:
@@ -9,6 +28,7 @@
     owner: root
     group: root
     mode: 0600
+  when: cis_st.stat.mode != 0600
   tags:
     - level-1
     - section-6

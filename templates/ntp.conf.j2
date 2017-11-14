@@ -76,8 +76,8 @@ interface listen {{ansible_default_ipv4.address}}
 {% endif %}
 # Our ntp sources
 {% if 'INFS_NTP' in group_names %}
-{{ ntp_servers }}
+{{ cis_ntp_servers }}
 {%- else %}
-{{ ntp_clients }}
+{{ cis_ntp_clients }}
 {% endif %}
 
