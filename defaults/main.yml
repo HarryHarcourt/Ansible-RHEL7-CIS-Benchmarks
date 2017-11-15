@@ -1,4 +1,4 @@
-# Standards: 1.1.20
+# Standards: 1.1.25
 ---
 
 ###############################################
@@ -258,6 +258,12 @@ cis_rsyslog_accept_remote_messages: false # Set to true if the host should accep
 
 # 4.2.2.3
 cis_syslog_ng_file_perms: "0640"
+
+# 4.3
+cis_logrotate_period: weekly
+cis_logrotate_keep: "rotate 4"
+cis_logrotate_create: create
+cis_logrotate_suffix: dateext
 
 # 5.2.5
 cis_sshd_max_auth_tries: 4
