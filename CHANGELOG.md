@@ -1,3 +1,7 @@
+1.1.26 (2017-12-18)
+* Updated task 1.4.2, more specificially the variable it calls in vars/main.yml for the boot loader /boot/grub2/grub.conf.  Previous entry has been commented out - brings the change in line with the CIS-CAT Tester
+* Updated security options to bring in line with the CIS-CAT Tester, thus added additional variable, cis_passwd_hash and cis_pwretry_number, as well as updating the password-auth-local and system-auth-local template files
+
 1.1.25 (2017-11-14)
 * Updated task 4.3 for the logrotate configuration and added default variables and tested
 
