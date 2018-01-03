@@ -1,5 +1,9 @@
-# Standards: 0.11
+# Standards: 1.1.27
 ---
 
+- include: "level-2/4.1.2.yml" 
+  when: "'4.1.2' not in cis_level_2_exclusions"
+- include: "level-2/4.1.yml"
+  when: "'4.1' not in cis_level_2_exclusions"
 - include: "level-2/6.1.1.yml"
   when: "'6.1.1' not in cis_level_2_exclusions"

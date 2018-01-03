@@ -1,4 +1,4 @@
-# Standards: 1.1.26
+# Standards: 1.1.27
 ---
 
 ###############################################
@@ -6,7 +6,7 @@
 ###############################################
 
 cis_apply_level_1_profile: true    # Whether Level 1 of the benchmark should be applied
-cis_apply_level_2_profile: false   # Whether Level 2 of the benchmark should be applied
+cis_apply_level_2_profile: true    # Whether Level 2 of the benchmark should be applied
 
 cis_level_1_exclusions: ['1.2.3','1.8','3.4.2','3.4.3']         # A list of Level 1 recommendations to exclude (i.e. ['1.1.1.1'])
 #cis_level_1_exclusions: ['1.1.10','1.1.1.1','1.1.1.2','1.1.1.3','1.1.1.4','1.1.1.5','1.1.1.6','1.1.1.7','1.1.1.8','1.1.18','1.1.19','1.1.8','1.1.9','1.2.1','1.2.2','1.2.3','1.3.1','1.3.2','1.4.2','1.4.3','1.5.1','1.5.2','1.5.3','1.5.4','1.7.1.1','1.7.1.2','1.7.1.3','1.7.1.4','1.7.1.5','1.7.1.6','1.8','3.4.2','3.4.3','4.2.1.1','4.2.1.2','4.2.1.4','4.2.1.5','4.2.2.1','4.2.2.2','4.2.2.3','4.2.2.4','4.2.2.5','4.2.3','4.2.4','4.3','5.1.1','5.2.12','5.2.14','5.2.15','5.2.16','5.2.1','5.2.8','5.3.3','5.3.4','5.4.1.2','5.4.1.3','5.4.2','5.4.3','5.5','6.1.10','6.1.11','6.1.12','6.1.13','6.1.14','6.1.2','6.1.3','6.1.4','6.1.5','6.1.6','6.1.7','6.1.8','6.1.9','6.2.10','6.2.11','6.2.12','6.2.13','6.2.14','6.2.15','6.2.16','6.2.17','6.2.18','6.2.19','6.2.1','6.2.2','6.2.3','6.2.4','6.2.5','6.2.6','6.2.7']         # A list of Level 1 recommendations to exclude (i.e. ['1.1.1.1'])
@@ -244,6 +244,56 @@ cis_hosts_allow_all_ips: "127.0.0.1"
 # 3.6.1
 # Installation of Firewalld Service
 cis_firewalld_install: { package: firewalld, state: present, service: firewalld, rstate: started, enabled: true, exception: 123 }
+
+# 4.1
+## Configuration for the auditd.conf 
+# 4.1.1.1
+# Max log file in MB
+cis_max_log_file: 8
+
+# 4.1.1.2
+## Ensure System is disabled when audit logs are full
+cis_space_left_action: email # Default SYSLOG
+cis_action_mail_acct: root # Default root
+cis_admin_space_left_action: halt # Default SUSPEND
+
+# 4.1.1.3
+## Ensure Audit logs are not automatically deleted
+cis_max_log_file_action: keep_logs # Default ROTATE
+
+# 4.1 - Remaining Auditd Logs
+cis_local_events: yes
+cis_write_logs: yes
+cis_log_file: /var/log/audit/audit.log
+cis_log_group: root
+cis_log_format: RAW
+cis_flush: INCREMENTAL_ASYNC
+cis_freq: 50
+cis_num_logs: 5
+cis_priority_boost: 4
+cis_disp_qos: lossy
+cis_dispatcher: /sbin/audispd
+cis_name_format: NONE
+##cis_name: mydomain
+cis_space_left: 75
+cis_admin_space_left: 50
+cis_disk_full_action: SUSPEND
+cis_disk_error_action: SUSPEND
+cis_use_libwrap: yes
+##cis_tcp_listen_port:  
+cis_tcp_listen_queue: 5
+cis_tcp_max_per_addr: 1
+##cis_tcp_client_ports: 1024-65535
+cis_tcp_client_max_idle: 0
+cis_enable_krb5: no
+cis_krb5_principal: auditd
+##cis_krb5_key_file: /etc/audit/audit.key
+cis_distribute_network: no
+## The following are commented out in the Audit File but are required for the variables
+cis_name: mydomain
+cis_tcp_listen_port: blank
+cis_tcp_client_ports: 1024-65535
+cis_krb5_key_file: /etc/audit/audit.key
 
 # 4.2.3
 # You should only enable either rsyslog or syslog-ng, but not both.

@@ -1,3 +1,7 @@
+1.1.27 (2018-01-02)
+* Creation of task 4.1 which is an accumulation of 4.1.1.1 and 4.1.1.2, all auditd.conf options are included in the default/main.yml - using a template file
+* Creation of task 4.1.2 which ensures that the auditd service is installed and is running
+
 1.1.26 (2017-12-18)
 * Updated task 1.4.2, more specificially the variable it calls in vars/main.yml for the boot loader /boot/grub2/grub.conf.  Previous entry has been commented out - brings the change in line with the CIS-CAT Tester
 * Updated security options to bring in line with the CIS-CAT Tester, thus added additional variable, cis_passwd_hash and cis_pwretry_number, as well as updating the password-auth-local and system-auth-local template files

@@ -1,0 +1,20 @@
+# Standards: 1.1.27 
+---
+
+# 4.1 - Ensure the auditd.conf file is configured
+
+- name: 4.1 - Install or update auditd.conf file
+  template:
+    src: templates/auditd.conf.j2
+    dest: /etc/audit/auditd.conf
+    mode: 0640
+    owner: root
+    group: root
+    backup: true
+  notify:
+    - Restart auditd
+  tags:
+    - level-2
+    - section-4
+    - "4.1"
+    - not-scored

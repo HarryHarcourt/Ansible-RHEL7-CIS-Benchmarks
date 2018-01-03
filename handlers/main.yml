@@ -23,3 +23,8 @@
   service:
     name: snmpd
     state: restarted
+
+- name: Restart auditd
+  service:
+    name: auditd
+    state: reloaded

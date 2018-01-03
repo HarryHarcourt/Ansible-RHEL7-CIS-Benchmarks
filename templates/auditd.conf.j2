@@ -1,0 +1,38 @@
+# This file is controled by Ansible
+# This is set based on the CIS Benchmarks section 4.1
+#
+# This file controls the configuration of the audit daemon
+#
+
+local_events = {{ cis_local_events }}
+write_logs = {{ cis_write_logs }} 
+log_file = {{ cis_log_file }}
+log_group = {{ cis_log_group }}
+log_format = {{ cis_log_format }}
+flush = {{ cis_flush }}
+freq = {{ cis_freq }}
+max_log_file = {{ cis_max_log_file }}
+num_logs = {{ cis_num_logs }}
+priority_boost = {{ cis_priority_boost }}
+disp_qos = {{ cis_disp_qos }}
+dispatcher = {{ cis_dispatcher }}
+name_format = {{ cis_name_format }}
+##name = {{ cis_name }}
+max_log_file_action = {{ cis_max_log_file_action }}
+space_left = {{ cis_space_left }}
+space_left_action = {{ cis_space_left_action }}
+action_mail_acct = {{ cis_action_mail_acct }}
+admin_space_left = {{ cis_admin_space_left }}
+admin_space_left_action = {{ cis_admin_space_left_action }}
+disk_full_action = {{ cis_disk_full_action }}
+disk_error_action = {{ cis_disk_error_action }}
+use_libwrap = {{ cis_use_libwrap }}
+##tcp_listen_port = {{ cis_tcp_listen_port }}
+tcp_listen_queue = {{ cis_tcp_listen_queue }}
+tcp_max_per_addr = {{ cis_tcp_max_per_addr }}
+##tcp_client_ports = {{ cis_tcp_client_ports }}
+tcp_client_max_idle = {{ cis_tcp_client_max_idle }}
+enable_krb5 = {{ cis_enable_krb5 }}
+krb5_principal = {{ cis_krb5_principal }}
+##krb5_key_file = {{ cis_krb5_key_file }}
+distribute_network = {{ cis_distribute_network }}

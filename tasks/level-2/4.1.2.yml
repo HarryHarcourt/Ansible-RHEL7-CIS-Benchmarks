@@ -1,0 +1,32 @@
+# Standards: 1.1.27
+---
+
+# 4.1.2 Ensure auditd Service is enabled
+
+- name: 4.1.2 - Check if auditd is installed
+  yum:
+    name: audit
+    state: present
+#  when: cis_enable_rsyslog
+#  register: rsyslog_4_2_1_1
+  tags:
+    - level-2
+    - section-4
+    - "4.1.2"
+    - scored
+    - skip_ansible_lint
+
+- name: 4.1.2 - Ensure auditd Service is enabled
+  service:
+    name: "auditd"
+    enabled: true
+    state: started
+  when:
+#    - cis_enable_rsyslog
+#    - rsyslog_4_2_1_1.rc is not defined or rsyslog_4_2_1_1.rc == 0
+  ignore_errors: false
+  tags:
+    - level-2
+    - section-4
+    - "4.1.2"
+    - scored
