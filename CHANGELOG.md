@@ -1,3 +1,7 @@
+1.1.28 (2018-01-03)
+* Creation of task 4.1.3 to address auditing in the grub file
+* Creation of task 4.1.n to address 4.1.4 - 4.1.17 - no optional flags (although 4.1.10 is not completed yet)
+
 1.1.27 (2018-01-02)
 * Creation of task 4.1 which is an accumulation of 4.1.1.1 and 4.1.1.2, all auditd.conf options are included in the default/main.yml - using a template file
 * Creation of task 4.1.2 which ensures that the auditd service is installed and is running

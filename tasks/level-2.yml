@@ -1,9 +1,15 @@
-# Standards: 1.1.27
+# Standards: 1.1.28
 ---
 
+# Note call 4.1.2 before 4.1 to ensure auditd is installed prior to installing the configuration file
 - include: "level-2/4.1.2.yml" 
   when: "'4.1.2' not in cis_level_2_exclusions"
 - include: "level-2/4.1.yml"
   when: "'4.1' not in cis_level_2_exclusions"
+- include: "level-2/4.1.3.yml"
+  when: "'4.1.3' not in cis_level_2_exclusions"
+# Note merged 4.1.4 - 4.1.17 merged into 4.1.n for now
+- include: "level-2/4.1.n.yml"
+  when: "'4.1.n' not in cis_level_2_exclusions"
 - include: "level-2/6.1.1.yml"
   when: "'6.1.1' not in cis_level_2_exclusions"

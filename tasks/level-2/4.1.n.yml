@@ -1,0 +1,20 @@
+# Standards: 1.1.28
+---
+
+# 4.1.4 - 4.1.17- Ensure the audit.rules file is configured
+
+- name: 4.1.n - Install or update audit.rules file
+  template:
+    src: templates/audit.rules.j2
+    dest: /etc/audit/rules.d/audit.rules
+    mode: 0600
+    owner: root
+    group: root
+    backup: true
+  notify:
+    - Restart auditd
+  tags:
+    - level-2
+    - section-4
+    - "4.1.n"
+    - scored

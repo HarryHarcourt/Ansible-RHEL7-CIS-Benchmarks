@@ -1,4 +1,4 @@
-# Standards: 1.1.27
+# Standards: 1.1.28
 ---
 
 ###############################################
@@ -262,8 +262,8 @@ cis_admin_space_left_action: halt # Default SUSPEND
 cis_max_log_file_action: keep_logs # Default ROTATE
 
 # 4.1 - Remaining Auditd Logs
-cis_local_events: yes
-cis_write_logs: yes
+cis_local_events: "yes"
+cis_write_logs: "yes"
 cis_log_file: /var/log/audit/audit.log
 cis_log_group: root
 cis_log_format: RAW
@@ -279,16 +279,16 @@ cis_space_left: 75
 cis_admin_space_left: 50
 cis_disk_full_action: SUSPEND
 cis_disk_error_action: SUSPEND
-cis_use_libwrap: yes
+cis_use_libwrap: "yes"
 ##cis_tcp_listen_port:  
 cis_tcp_listen_queue: 5
 cis_tcp_max_per_addr: 1
 ##cis_tcp_client_ports: 1024-65535
 cis_tcp_client_max_idle: 0
-cis_enable_krb5: no
+cis_enable_krb5: "no"
 cis_krb5_principal: auditd
 ##cis_krb5_key_file: /etc/audit/audit.key
-cis_distribute_network: no
+cis_distribute_network: "no"
 ## The following are commented out in the Audit File but are required for the variables
 cis_name: mydomain
 cis_tcp_listen_port: blank
