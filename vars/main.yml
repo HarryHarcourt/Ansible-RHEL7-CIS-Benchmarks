@@ -1,4 +1,4 @@
-# Standards: 1.1.26 
+# Standards: 1.1.29 
 ---
 
 # Modified by Ben to test impact
@@ -11,6 +11,7 @@ cis_target_os_versions:
   - "7.2"
   - "7.3"
   - "7.4"
+  - "7.5"
 cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"
 cis_aide_database_filename: "/var/lib/aide/aide.db.gz"
 #cis_grub_bootloader_filename: "/boot/grub/menu.lst"
