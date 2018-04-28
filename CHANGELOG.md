@@ -1,3 +1,7 @@
+1.1.30 (2018-04-28)
+* Added support for CentOS by including it in vars/main.yml and following Martin Baillie merge request
+* Tested on CentOS 7.4 and RHEL 7.4 and 7.5 on AWS AMI's - all seemed to work
+
 1.1.29 (2018-04-28)
 * Tested and added RHEL 7.5 for standard test configuration (as you see)
 
