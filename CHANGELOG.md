@@ -1,3 +1,6 @@
+1.1.31 (2018-04-28)
+* Trying to fix merge from Martin by removing end of list spaces
+
 1.1.30 (2018-04-28)
 * Added support for CentOS by including it in vars/main.yml and following Martin Baillie merge request
 * Tested on CentOS 7.4 and RHEL 7.4 and 7.5 on AWS AMI's - all seemed to work
