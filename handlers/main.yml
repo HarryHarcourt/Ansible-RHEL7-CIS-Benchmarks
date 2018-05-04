@@ -19,6 +19,11 @@
     name: ntpd
     state: restarted
 
+- name: Restart chronyd
+  service:
+    name: chronyd
+    state: restarted
+
 - name: Restart snmpd
   service:
     name: snmpd
