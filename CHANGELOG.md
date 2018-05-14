@@ -1,3 +1,13 @@
+1.1.31 (2018-04-28)
+* Trying to fix merge from Martin by removing end of list spaces
+
+1.1.30 (2018-04-28)
+* Added support for CentOS by including it in vars/main.yml and following Martin Baillie merge request
+* Tested on CentOS 7.4 and RHEL 7.4 and 7.5 on AWS AMI's - all seemed to work
+
+1.1.29 (2018-04-28)
+* Tested and added RHEL 7.5 for standard test configuration (as you see)
+
 1.1.28 (2018-01-03)
 * Creation of task 4.1.3 to address auditing in the grub file
 * Creation of task 4.1.n to address 4.1.4 - 4.1.17 - no optional flags (although 4.1.10 is not completed yet)
