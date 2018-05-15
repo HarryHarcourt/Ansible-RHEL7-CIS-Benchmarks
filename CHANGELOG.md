@@ -1,3 +1,8 @@
+1.1.32 (2018-05-14)
+* Merging various commits from martinbaillie and thorian93
+* martinbaillie - corrected code for hosts.allow to make a list in defaults/main.yml
+* thorian93 - added code to include chronyd as a configuration option and a template file
+
 1.1.31 (2018-04-28)
 * Trying to fix merge from Martin by removing end of list spaces
 

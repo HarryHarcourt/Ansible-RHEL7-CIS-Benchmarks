@@ -1,4 +1,6 @@
-# {{ ansible_managed }}
+####
+## 1.1.32
+## {{ ansible_managed }}
 #
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
@@ -8,7 +10,7 @@
 #server 3.centos.pool.ntp.org iburst
 
 # Our NTP Servers:
-{{ cis_ntp_servers }}
+{{ cis_chrony_servers }}
 
 # Record the rate at which the system clock gains/losses time.
 driftfile /var/lib/chrony/drift
