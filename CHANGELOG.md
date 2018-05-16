@@ -1,3 +1,9 @@
+1.1.33 (2018-05-15)
+* thorian93 (issue number 8) noted that sudo nolonger required to enter password after applying 5.3.2 task
+* further investigation showed that the CIS Benchmarks recommendations were more reliable than RedHat
+* Template updated and tested, all good again
+* Will tidy up after feedback from thorian93 
+
 1.1.32 (2018-05-14)
 * Merging various commits from martinbaillie and thorian93
 * martinbaillie - corrected code for hosts.allow to make a list in defaults/main.yml
