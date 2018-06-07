@@ -1,5 +1,4 @@
-#
-# Created by Ansible for {{ ansible_hostname }}
+# {{ ansible_managed }}
 #
 ###############################################################################
 #
@@ -9,7 +8,7 @@
 ###############################################################################
 #
 # This file is intended to only be as a starting point.  Many more
-# configuration directives exist than are mentioned in this file.  For 
+# configuration directives exist than are mentioned in this file.  For
 # full details, see the snmpd.conf(5) manual page.
 #
 # All lines beginning with a '#' are comments and are intended for you
@@ -29,7 +28,7 @@
 # allow me to access it?"
 #
 # By default, the agent responds to the "public" community for read
-# only access, if run out of the box without any configuration file in 
+# only access, if run out of the box without any configuration file in
 # place.  The following examples show you other ways of configuring
 # the agent so that you can change the community names, and give
 # yourself write access to the mib tree as well.
@@ -108,7 +107,7 @@ access  notConfigGroup ""      any       noauth    exact  all none none
 #
 # WARNING: If you uncomment the following lines you allow write access to your
 # snmpd daemon from any source! To avoid this use different names for your
-# community or split out the write access to a different community and 
+# community or split out the write access to a different community and
 # restrict it to your local network.
 # Also remember to comment the syslocation and syscontact parameters later as
 # otherwise they are still read only (see FAQ for net-snmp).
@@ -220,7 +219,7 @@ dontLogTCPWrappersConnects yes
 #proc sendmail 10 1
 
 #  A snmpwalk of the process mib tree would look something like this:
-# 
+#
 # % snmpwalk -v 1 localhost -c public .1.3.6.1.4.1.2021.2
 # enterprises.ucdavis.procTable.prEntry.prIndex.1 = 1
 # enterprises.ucdavis.procTable.prEntry.prIndex.2 = 2
@@ -250,8 +249,8 @@ dontLogTCPWrappersConnects yes
 #  Note that the errorFlag for mountd is set to 1 because one is not
 #  running (in this case an rpc.mountd is, but thats not good enough),
 #  and the ErrMessage tells you what's wrong.  The configuration
-#  imposed in the snmpd.conf file is also shown.  
-# 
+#  imposed in the snmpd.conf file is also shown.
+#
 #  Special Case:  When the min and max numbers are both 0, it assumes
 #  you want a max of infinity and a min of 1.
 #
@@ -291,7 +290,7 @@ dontLogTCPWrappersConnects yes
 #
 #exec shelltest /bin/sh /tmp/shtest
 
-# Then, 
+# Then,
 # % snmpwalk -v 1 localhost -c public .1.3.6.1.4.1.2021.8
 # enterprises.ucdavis.extTable.extEntry.extIndex.1 = 1
 # enterprises.ucdavis.extTable.extEntry.extIndex.2 = 2
@@ -317,7 +316,7 @@ dontLogTCPWrappersConnects yes
 #
 
 # The agent can check the amount of available disk space, and make
-# sure it is above a set limit.  
+# sure it is above a set limit.
 
 # disk PATH [MIN=100000]
 #
@@ -331,7 +330,7 @@ dontLogTCPWrappersConnects yes
 
 # % snmpwalk -v 1 localhost -c public .1.3.6.1.4.1.2021.9
 # enterprises.ucdavis.diskTable.dskEntry.diskIndex.1 = 0
-# enterprises.ucdavis.diskTable.dskEntry.diskPath.1 = "/" Hex: 2F 
+# enterprises.ucdavis.diskTable.dskEntry.diskPath.1 = "/" Hex: 2F
 # enterprises.ucdavis.diskTable.dskEntry.diskDevice.1 = "/dev/dsk/c201d6s0"
 # enterprises.ucdavis.diskTable.dskEntry.diskMinimum.1 = 10000
 # enterprises.ucdavis.diskTable.dskEntry.diskTotal.1 = 837130
@@ -365,9 +364,9 @@ dontLogTCPWrappersConnects yes
 # enterprises.ucdavis.loadTable.laEntry.loadaveNames.1 = "Load-1"
 # enterprises.ucdavis.loadTable.laEntry.loadaveNames.2 = "Load-5"
 # enterprises.ucdavis.loadTable.laEntry.loadaveNames.3 = "Load-15"
-# enterprises.ucdavis.loadTable.laEntry.loadaveLoad.1 = "0.49" Hex: 30 2E 34 39 
-# enterprises.ucdavis.loadTable.laEntry.loadaveLoad.2 = "0.31" Hex: 30 2E 33 31 
-# enterprises.ucdavis.loadTable.laEntry.loadaveLoad.3 = "0.26" Hex: 30 2E 32 36 
+# enterprises.ucdavis.loadTable.laEntry.loadaveLoad.1 = "0.49" Hex: 30 2E 34 39
+# enterprises.ucdavis.loadTable.laEntry.loadaveLoad.2 = "0.31" Hex: 30 2E 33 31
+# enterprises.ucdavis.loadTable.laEntry.loadaveLoad.3 = "0.26" Hex: 30 2E 32 36
 # enterprises.ucdavis.loadTable.laEntry.loadaveConfig.1 = "12.00"
 # enterprises.ucdavis.loadTable.laEntry.loadaveConfig.2 = "14.00"
 # enterprises.ucdavis.loadTable.laEntry.loadaveConfig.3 = "14.00"
@@ -383,7 +382,7 @@ dontLogTCPWrappersConnects yes
 
 ###############################################################################
 # Extensible sections.
-# 
+#
 
 # This alleviates the multiple line output problem found in the
 # previous executable mib by placing each mib in its own mib table:
@@ -417,8 +416,8 @@ dontLogTCPWrappersConnects yes
 # the .50.* outputs above to change to reasonable text descriptions.
 
 # Other ideas:
-# 
-# exec .1.3.6.1.4.1.2021.51 ps /bin/ps 
+#
+# exec .1.3.6.1.4.1.2021.51 ps /bin/ps
 # exec .1.3.6.1.4.1.2021.52 top /usr/local/bin/top
 # exec .1.3.6.1.4.1.2021.53 mailq /usr/bin/mailq
 
@@ -427,17 +426,17 @@ dontLogTCPWrappersConnects yes
 
 ###############################################################################
 # Pass through control.
-# 
+#
 
 # Usage:
 #   pass MIBOID EXEC-COMMAND
 #
 # This will pass total control of the mib underneath the MIBOID
-# portion of the mib to the EXEC-COMMAND.  
+# portion of the mib to the EXEC-COMMAND.
 #
 # Note:  You'll have to change the path of the passtest script to your
 # source directory or install it in the given location.
-# 
+#
 # Example:  (see the script for details)
 #           (commented out here since it requires that you place the
 #           script in the right location. (its not installed by default))

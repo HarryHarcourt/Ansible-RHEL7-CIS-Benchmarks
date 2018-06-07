@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+#
 ## First rule - delete all
 -D
 
@@ -50,9 +52,9 @@
 -k perm_mod
 
 ## 4.1.11 Ensure unsuccessful unauthorized file access attempts are collected
--a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access 
+-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access
 -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access
--a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access 
+-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access
 -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access
 
 ## 4.1.12 Ensure use of privileged commands is collected
@@ -79,5 +81,5 @@
 -w /sbin/modprobe -p x -k modules
 -a always,exit arch=b64 -S init_module -S delete_module -k modules
 
-## 4.1.18 Ensure the audit configuration is immutable 
+## 4.1.18 Ensure the audit configuration is immutable
 -e 2

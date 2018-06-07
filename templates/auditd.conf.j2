@@ -1,11 +1,12 @@
-# This file is controled by Ansible
+# {{ ansible_managed }}
+#
 # This is set based on the CIS Benchmarks section 4.1
 #
 # This file controls the configuration of the audit daemon
 #
 
 local_events = {{ cis_local_events }}
-write_logs = {{ cis_write_logs }} 
+write_logs = {{ cis_write_logs }}
 log_file = {{ cis_log_file }}
 log_group = {{ cis_log_group }}
 log_format = {{ cis_log_format }}
