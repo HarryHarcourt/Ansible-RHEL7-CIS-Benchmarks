@@ -14,7 +14,7 @@
     - "2.2.8"
     - scored
 
-- name: 2.2.6 - Ensure DNS Bind/Named Service is correct {{ cis_named_install.rstate }}, exception {{ cis_named_install.exception }}
+- name: 2.2.8 - Ensure DNS Bind/Named Service is correct {{ cis_named_install.rstate }}, exception {{ cis_named_install.exception }}
   service:
     name: "{{ item.service }}"
     enabled: "{{ item.enabled }}"
