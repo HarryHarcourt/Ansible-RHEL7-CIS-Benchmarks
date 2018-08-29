@@ -1,3 +1,9 @@
+1.1.34 (2018-08-29)
+* thorian93 (issue number 9) user prompted 4 times when changing password.  
+* further investigation showed that somehow I primarily had the links wrong linking password-auth to password-auth-local (for example) instead of password-auth linked to password-auth-ac (which is the auto-generated file created by running "authconfig --updateall".
+* Back peddled and restored the working templates
+* Tested issue number 9 and issue number 8
+
 1.1.33 (2018-05-15)
 * thorian93 (issue number 8) noted that sudo nolonger required to enter password after applying 5.3.2 task
 * further investigation showed that the CIS Benchmarks recommendations were more reliable than RedHat

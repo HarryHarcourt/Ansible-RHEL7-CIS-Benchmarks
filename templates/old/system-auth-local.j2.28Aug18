@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+#
+# This is a file generated from a template from Ansible
+# Instructions were provided by RedHat from the following site:
+# https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/chap-Hardening_Your_System_with_Tools_and_Services.html
+#
+auth required pam_faillock.so preauth audit silent deny=5 unlock_time=900
+auth sufficient pam_unix.so nullok try_first_pass
+auth [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900
+auth sufficient pam_faillock.so authsucc audit deny=5 unlock_time=900
+auth sufficient pam_unix.so nullok try_first_pass
+#auth        required       pam_faillock.so preauth audit silent deny={{ cis_pwfailed_attempts }} unlock_time={{ cis_pwunlock_time }}
+#auth        [success=1 default=bad] pam_unix.so
+#auth        [default=die]  pam_faillock.so authfail audit deny={{ cis_pwfailed_attempts }} unlock_time={{ cis_pwunlock_time }}
+#auth        sufficient     pam_faillock.so authsucc audit deny={{ cis_pwfailed_attempts }} unlock_time={{ cis_pwunlock_time }}
+
+account     required       pam_faillock.so
+#account     include        system-auth-ac
+
+password    requisite      pam_pwquality.so try_first_pass retry={{ cis_pwretry_number }}
+password    sufficient     pam_unix.so remember={{ cis_pwreuse_number }}
+password    sufficient     pam_unix.so {{ cis_passwd_hash }}
+#password    include        system-auth-ac
+
+#session     include        system-auth-ac
