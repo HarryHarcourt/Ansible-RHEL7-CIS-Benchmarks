@@ -4,8 +4,13 @@
 # 3.6.2 Ensure default deny firewall policy
 
 - name: 3.6.2 - Ensure default deny firewall policy
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+  iptables:
+    chain: {{ item }}
+    policy: DROP
+  with_items:
+    - INPUT
+    - OUTPUT
+    - FORWARD
   tags:
     - level-1
     - section-3
