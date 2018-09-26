@@ -1,3 +1,6 @@
+1.1.35 (2018-09-25)
+* Updated to address CentOS build which did not have authconfig installed so validation and linking fails
+
 1.1.34 (2018-08-29)
 * thorian93 (issue number 9) user prompted 4 times when changing password.  
 * further investigation showed that somehow I primarily had the links wrong linking password-auth to password-auth-local (for example) instead of password-auth linked to password-auth-ac (which is the auto-generated file created by running "authconfig --updateall".
