@@ -30,6 +30,4 @@
     state: restarted
 
 - name: Restart auditd
-  service:
-    name: auditd
-    state: reloaded
+  shell: service auditd restart
