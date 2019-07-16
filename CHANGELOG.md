@@ -1,3 +1,6 @@
+1.1.36 (2019-07-15)
+* Updating handlers/main.yml for the auditd service reload, added use=service
+
 1.1.35 (2018-09-25)
 * Updated to address CentOS build which did not have authconfig installed so validation and linking fails
 
