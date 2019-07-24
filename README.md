@@ -1,7 +1,7 @@
 HarryHarcourt.Ansible-RHEL7-CIS-Benchmarks
 =========
 
-All Credit goes to anthcourtney for the original framework found here: https://github.com/anthcourtney/ansible-role-cis-amazon-linux
+All credit goes to anthcourtney for the original framework found here: https://github.com/anthcourtney/ansible-role-cis-amazon-linux
 
 This implementation has been converted to Red Hat Enterprise Linux 7.X (tested 7.0 - 7.5) and CentOS 7.4 (note CentOS version below 7.4 may have issues with SSH). 
 
@@ -157,7 +157,9 @@ The following tests have been flagged but are not yet implemented:
 License
 -------
 
-BSD. 
+NOTE: There has been some confusion of the license that should be used for this Ansible Role, the base source of this Role from Anthony Courtney did not have a License file, however the meta/main.yml referenced MIT but the README (below) referenced BSD.  With no feedback from Anthony (through logging an issue against the original source and contacting Anthony through LinkedIn) I have decided to adopt the MIT License for this Role.
+
+MIT. 
 
 Author Information
 ------------------
