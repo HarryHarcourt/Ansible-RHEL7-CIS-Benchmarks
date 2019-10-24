@@ -33,4 +33,4 @@
   service:
     name: auditd
     state: reloaded
-    use: service
+    use: sysvinit
