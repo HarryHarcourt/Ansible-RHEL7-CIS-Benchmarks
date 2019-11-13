@@ -4,7 +4,7 @@
 # 2.2.15 Ensure mail transfer agent is configured for local-only mode
 
 - name: 2.2.15 - Check if mail transfer agent is configured for local-only mode
-  shell: "netstat -an | grep LIST | grep ':25[[:space:]]'"
+  shell: "LC_ALL=C ss -tln | grep LIST | grep ':25[[:space:]]'"
   register: mta_2_2_15
   ignore_errors: true
   changed_when: false
