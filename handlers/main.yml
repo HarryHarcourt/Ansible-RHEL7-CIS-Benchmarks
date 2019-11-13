@@ -31,3 +31,4 @@
 
 - name: Restart auditd
   command: "/usr/sbin/service auditd reload"
+  warn: false
