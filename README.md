@@ -138,6 +138,9 @@ This role is compatible with the following versions of ansible:
 * 2.1.3
 * 2.2.0
 * 2.3.0
+* 2.7.0
+* 2.8.x
+* 2.9.x
 
 This role has not been tested against any other versions of ansible.
 
