@@ -1,4 +1,4 @@
-# Standards: 1.1.31
+# Standards: 1.1.37
 ---
 
 # Modified by Ben to test impact
@@ -7,7 +7,6 @@ cis_target_os_distribution:
   - "RedHat"
   - "CentOS"
 cis_target_os_versions:
-  - "7.0"
   - "7.1"
   - "7.2"
   - "7.3"

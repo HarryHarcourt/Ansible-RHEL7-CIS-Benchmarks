@@ -1,4 +1,4 @@
-# Standards: 1.1.36
+# Standards: 1.1.37
 ---
 
 - name: Restart sshd
@@ -30,5 +30,5 @@
     state: restarted
 
 - name: Restart auditd
-  command: "/usr/sbin/service auditd reload"
-  warn: false
+  command: /usr/sbin/service auditd reload
+

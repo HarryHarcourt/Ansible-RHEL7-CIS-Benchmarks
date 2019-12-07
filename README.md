@@ -3,7 +3,7 @@ HarryHarcourt.Ansible-RHEL7-CIS-Benchmarks
 
 All credit goes to anthcourtney for the original framework found here: https://github.com/anthcourtney/ansible-role-cis-amazon-linux
 
-This implementation has been converted to Red Hat Enterprise Linux 7.X (tested 7.0 - 7.5) and CentOS 7.4 (note CentOS version below 7.4 may have issues with SSH). 
+This implementation has been converted to Red Hat Enterprise Linux 7.X (tested 7.1 - 7.7) and CentOS 7.4 (tested 7.4 - 7.7, note CentOS version below 7.4 may have issues with SSH). 
 
 This implementation has been made idempotent in many places, and continues to be
 
@@ -11,7 +11,7 @@ This implementation allows the enabling of and configuration of some services.
 
 The CIS RHEL Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Red_Hat_Enterprise_Linux_7_Benchmark_v2.1.1.pdf>
 
-This role was developed and tested against Red Hat Linux 7.0, 7.1, 7.2, 7.3, 7.4 and 7.5 using standard AWS AMI's.
+This role was developed and tested against Red Hat Linux 7.1, 7.2, 7.3, 7.4, 7.5, 7.6 and 7.7 using standard AWS AMI's.
 This role was developed and tested against CentOS 7.4 using standard AWS AMI's.
 
 Why Would I Use This Role?

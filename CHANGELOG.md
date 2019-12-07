@@ -1,3 +1,7 @@
+1.1.37 (2019-12-6)
+* Updating handlers/main.yml for the auditd service reload, changed to a command (as it is recommended rather than changing and option in the auditd service file itself to allow (thus updating the OS)
+* Updating var/main.yml to add 7.7 as validated versions and removed 7.0 for RHEL
+
 1.1.36 (2019-07-15)
 * Updating handlers/main.yml for the auditd service reload, added use=service
 
