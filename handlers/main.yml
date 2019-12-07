@@ -30,7 +30,5 @@
     state: restarted
 
 - name: Restart auditd
-  service:
-    name: auditd
-    state: reloaded
-    use: service
+  command: "/usr/sbin/service auditd reload"
+  warn: false
